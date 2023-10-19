@@ -1,4 +1,4 @@
-# ELO308 Grupo 8
+# ELO308 - Grupo 8
 Este repositorio contiene los archivos para el ramo de  Diseño de Equipos Electrónicos.
 ## Diseño
 El documento de diseño y sus revisiones se encuentran en la carpeta de ```Diseño```.
