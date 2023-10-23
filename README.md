@@ -9,3 +9,7 @@ El esquemático en sí está en la ruta ```WIFI_Shield_Rev1/WIFI_Shield_Rev1/SCH
 
 ## Librerías
 Las iteraciones anteriores de las librerías usadas se encuentran en la carpeta ```Librerías``` . Las finalmente usadas se encuentran en ```WIFI_Shield_Rev1```.
+
+## [NUEVO] Diseño de la PCB
+
+Contenido dentro de ```WIFI_Shield_Rev1/WIFI_Shield_Rev1/SCHEMATIC_R1.brd```.
