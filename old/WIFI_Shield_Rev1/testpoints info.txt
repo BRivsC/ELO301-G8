@@ -1,0 +1,4 @@
+Versión: WIFI_Shield_v4
+TP1: Medir alimentación
+TP2: Verifica que el botón conduzca
+Se van a usar los pads de las resistencias de 0 Ohm para medir consumo de corriente

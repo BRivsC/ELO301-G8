@@ -8,8 +8,14 @@ En la carpeta ```WIFI_Shield_Rev1``` se encuentra la primera revisión del esque
 El esquemático en sí está en la ruta ```WIFI_Shield_Rev1/WIFI_Shield_Rev1/SCHEMATIC_R1.sch```.
 
 ## Librerías
-Las iteraciones anteriores de las librerías usadas se encuentran en la carpeta ```Librerías``` . Las finalmente usadas se encuentran en ```WIFI_Shield_Rev1```.
+Las iteraciones anteriores de las librerías hechas por el grupo se encuentran en la carpeta ```Librerías``` . Las finalmente usadas se encuentran en su respectiva carpeta de proyecto.
 
-## [NUEVO] Diseño de la PCB
+## Diseño de la PCB
 
-Contenido dentro de ```WIFI_Shield_Rev1/WIFI_Shield_Rev1/SCHEMATIC_R1.brd```.
+Contenido dentro de ```/WIFI_Shield_Rev2/WIFI_Shield_Rev2/SCHEMATIC_R1.brd```. 
+
+## Historial de revisiones
+
+Rev 1: Revisión inicial.
+
+Rev 2: Se ajustaron un par de pines para facilitar el ruteo y se ajustó la librería de la NUCLEO para eliminar los pines sin usar. 
