@@ -9555,10 +9555,6 @@ fuente de poder</text>
 <wire x1="-128.27" y1="69.85" x2="-129.54" y2="69.85" width="0.1524" layer="91"/>
 <label x="100.33" y="90.17" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
-<segment>
-<pinref part="M1" gate="-CN8" pin="PA0"/>
-<wire x1="100.33" y1="90.17" x2="104.14" y2="90.17" width="0.1524" layer="91"/>
-</segment>
 </net>
 <net name="PESP_EN" class="0">
 <segment>
@@ -9649,6 +9645,12 @@ fuente de poder</text>
 <pinref part="R11" gate="G$1" pin="1"/>
 <wire x1="7.62" y1="59.69" x2="67.31" y2="59.69" width="0.1524" layer="91"/>
 <pinref part="M1" gate="-CN9" pin="PA3"/>
+</segment>
+</net>
+<net name="N$24" class="0">
+<segment>
+<pinref part="M1" gate="-CN8" pin="PA0"/>
+<wire x1="104.14" y1="90.17" x2="100.33" y2="90.17" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
