@@ -12,7 +12,7 @@ Las iteraciones anteriores de las librerías hechas por el grupo se encuentran e
 
 ## Diseño de la PCB
 
-Contenido dentro de ```/WIFI_Shield_Rev2/WIFI_Shield_Rev2/SCHEMATIC_R1.brd```. 
+Contenido dentro de ```/WIFI_Shield_Rev2/WIFI_Shield_Rev2/SCHEMATIC_R1.brd```. Los archivos de manufactura se encuentran en ```/WIFI_Shield_Rev2/WIFI_SHIELD_2023-10-30.zip```
 
 ## Historial de revisiones
 

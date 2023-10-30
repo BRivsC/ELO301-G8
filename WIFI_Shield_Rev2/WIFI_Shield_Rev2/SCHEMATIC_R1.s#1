@@ -8963,7 +8963,7 @@ fuente de poder</text>
 <text x="38.1" y="-62.23" size="10.16" layer="94">GRUPO 8</text>
 <text x="-142.24" y="-53.34" size="2.54" layer="94">Se cambia el pin al que está conectado el botón para facilitar el ruteo</text>
 <text x="-143.51" y="-49.53" size="2.54" layer="94">OBSERVACIONES</text>
-<text x="-142.24" y="-58.42" size="2.54" layer="94">Se eliminan los conectores externos del shield porque no se estaban utilizando</text>
+<text x="-142.24" y="-58.42" size="2.54" layer="94">Se eliminan los conectores externos del shiel porque no se estaban utilizando</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="-62.23" y="-12.7" smashed="yes">
@@ -9555,6 +9555,10 @@ fuente de poder</text>
 <wire x1="-128.27" y1="69.85" x2="-129.54" y2="69.85" width="0.1524" layer="91"/>
 <label x="100.33" y="90.17" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
+<segment>
+<pinref part="M1" gate="-CN8" pin="PA0"/>
+<wire x1="100.33" y1="90.17" x2="104.14" y2="90.17" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="PESP_EN" class="0">
 <segment>
@@ -9645,12 +9649,6 @@ fuente de poder</text>
 <pinref part="R11" gate="G$1" pin="1"/>
 <wire x1="7.62" y1="59.69" x2="67.31" y2="59.69" width="0.1524" layer="91"/>
 <pinref part="M1" gate="-CN9" pin="PA3"/>
-</segment>
-</net>
-<net name="N$24" class="0">
-<segment>
-<pinref part="M1" gate="-CN8" pin="PA0"/>
-<wire x1="104.14" y1="90.17" x2="100.33" y2="90.17" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

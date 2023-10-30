@@ -8963,7 +8963,7 @@ fuente de poder</text>
 <text x="38.1" y="-62.23" size="10.16" layer="94">GRUPO 8</text>
 <text x="-142.24" y="-53.34" size="2.54" layer="94">Se cambia el pin al que está conectado el botón para facilitar el ruteo</text>
 <text x="-143.51" y="-49.53" size="2.54" layer="94">OBSERVACIONES</text>
-<text x="-142.24" y="-58.42" size="2.54" layer="94">Se eliminan los conectores externos del shiel porque no se estaban utilizando</text>
+<text x="-142.24" y="-58.42" size="2.54" layer="94">Se eliminan los conectores externos del shield porque no se estaban utilizando</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="-62.23" y="-12.7" smashed="yes">
