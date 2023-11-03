@@ -6,9 +6,12 @@
 "C4";"0.1uF 0603";"C-USC0603";"C0603";"CAPACITOR, American symbol";"";"";"";"";"";"";"";"";"";"GRM188R72A104KA35D";"37";"C";"";
 "C5";"10uF";"C-USC0805";"C0805";"CAPACITOR, American symbol";"";"";"";"";"";"";"";"";"";"GRM21BR71A106KA73L";"63";"C";"";
 "CONN1";"TD-103-T-A";"TD-103-T-ACON6_2X3_TU_HTS_SAI";"CON6_2X3_TU_HTS_SAI";"";"Copyright (C) 2023 Ultra Librarian. All rights reserved.";"";"";"";"";"TD-103-T-A";"Samtec Inc";"";"";"TD-103-T-A";"";"";"";
-"JP1";"QPC02SXGN-RC";"PINHD-1X3";"1X03";"PIN HEADER";"";"";"";"";"";"";"";"";"";"QPC02SXGN-RC";"92";"";"";
-"JP2";"QPC02SXGN-RC";"PINHD-1X3";"1X03";"PIN HEADER";"";"";"";"";"";"";"";"";"";"QPC02SXGN-RC";"92";"";"";
-"JP3";"QPC02SXGN-RC";"PINHD-1X3";"1X03";"PIN HEADER";"";"";"";"";"";"";"";"";"";"QPC02SXGN-RC";"92";"";"";
+"JP1";"QPC02SXGN-RC";"PINHD-1X3";"1X03";"PIN HEADER";"";"";"";"";"";"";"";"";"";"";"92";"";"";
+"JP2";"QPC02SXGN-RC";"PINHD-1X3";"1X03";"PIN HEADER";"";"";"";"";"";"";"";"";"";"";"92";"";"";
+"JP3";"QPC02SXGN-RC";"PINHD-1X3";"1X03";"PIN HEADER";"";"";"";"";"";"";"";"";"";"";"92";"";"";
+"JP_C1";"QPC02SXGN-RC";"QPC02SXGN-RC";"PLACEHOLDER";"";"";"";"";"";"";"";"";"";"";"QPC02SXGN-RC";"";"";"";
+"JP_C2";"QPC02SXGN-RC";"QPC02SXGN-RC";"PLACEHOLDER";"";"";"";"";"";"";"";"";"";"";"QPC02SXGN-RC";"";"";"";
+"JP_C3";"QPC02SXGN-RC";"QPC02SXGN-RC";"PLACEHOLDER";"";"";"";"";"";"";"";"";"";"";"QPC02SXGN-RC";"";"";"";
 "LED1";"LTST-C191KGKT";"LTST-C191KRKT";"0603";"";"";"";"";"";"";"";"";"";"";"LTST-C191KGKT";"";"";"";
 "LED2";"LTST-C191KRKT";"LTST-C191KRKT";"0603";"";"";"";"";"";"";"";"";"";"";"LTST-C191KRKT";"";"";"";
 "M1";"NUCLEO-L452RE";"NUCLEO-L452RE";"NUCLEO-64";"No existe un outline (Layer Dimension) para esta librería. En su lugar se utilizó una referencia en tDocu.";"";"";"";"";"";"";"";"";"";"NUCLEO-L452RE";"";"";"";

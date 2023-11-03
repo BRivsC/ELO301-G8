@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.01" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -8787,6 +8787,80 @@ Al momento de diseñar la tarjeta, el Dimension debe ser dibujado según los req
 </deviceset>
 </devicesets>
 </library>
+<library name="D01-9922046">
+<packages>
+</packages>
+<symbols>
+<symbol name="D01-9922046">
+<wire x1="2.54" y1="15.24" x2="2.54" y2="-15.24" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-15.24" x2="-2.54" y2="-15.24" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-15.24" x2="-2.54" y2="15.24" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="15.24" x2="2.54" y2="15.24" width="0.254" layer="94"/>
+<wire x1="0" y1="12.7" x2="5.08" y2="12.7" width="0.254" layer="94"/>
+<wire x1="0" y1="10.16" x2="5.08" y2="10.16" width="0.254" layer="94"/>
+<wire x1="0" y1="7.62" x2="5.08" y2="7.62" width="0.254" layer="94"/>
+<wire x1="0" y1="5.08" x2="5.08" y2="5.08" width="0.254" layer="94"/>
+<wire x1="0" y1="-7.62" x2="5.08" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="0" y1="-10.16" x2="5.08" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="0" y1="-12.7" x2="5.08" y2="-12.7" width="0.254" layer="94"/>
+<wire x1="0" y1="-5.08" x2="5.08" y2="-5.08" width="0.254" layer="94"/>
+<text x="-2.54" y="17.78" size="1.778" layer="95">&gt;NAME</text>
+<text x="-2.54" y="-17.78" size="1.778" layer="95">&gt;VALUE</text>
+<wire x1="0" y1="2.54" x2="5.08" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="0" x2="5.08" y2="0" width="0.254" layer="94"/>
+<wire x1="2.54" y1="15.24" x2="2.54" y2="-15.24" width="0.254" layer="94"/>
+<wire x1="0" y1="-2.54" x2="5.08" y2="-2.54" width="0.254" layer="94"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="D01-9922046" prefix="CONN" uservalue="yes">
+<gates>
+<gate name="G$1" symbol="D01-9922046" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="QPC02SXGN-RC">
+<packages>
+<package name="PLACEHOLDER">
+<wire x1="-2.54" y1="-1.27" x2="-2.54" y2="1.27" width="0.1524" layer="51"/>
+<wire x1="2.54" y1="-1.27" x2="2.54" y2="1.27" width="0.1524" layer="51"/>
+<wire x1="-2.5" y1="1.27" x2="2.5" y2="1.27" width="0.1524" layer="51"/>
+<wire x1="-2.5" y1="-1.27" x2="2.5" y2="-1.27" width="0.1524" layer="51"/>
+</package>
+</packages>
+<symbols>
+<symbol name="QPC02SXGN-RC">
+<wire x1="-2.54" y1="2.54" x2="-2.54" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-2.54" x2="2.54" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-2.54" x2="2.54" y2="2.54" width="0.254" layer="94"/>
+<wire x1="2.54" y1="2.54" x2="-2.54" y2="2.54" width="0.254" layer="94"/>
+<text x="-2.54" y="5.08" size="1.778" layer="95">&gt;NAME</text>
+<text x="-2.54" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="QPC02SXGN-RC" prefix="JP_C" uservalue="yes">
+<gates>
+<gate name="G$1" symbol="QPC02SXGN-RC" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="PLACEHOLDER">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -9015,16 +9089,25 @@ Al momento de diseñar la tarjeta, el Dimension debe ser dibujado según los req
 <part name="M1" library="NUCLEO-L452RE" deviceset="NUCLEO-L452RE" device="" value="NUCLEO-L452RE">
 <attribute name="PARTNO" value="NUCLEO-L452RE"/>
 </part>
-<part name="JP1" library="pinhead edit" deviceset="PINHD-1X3" device="" package3d_urn="urn:adsk.eagle:package:22458/2" value="QPC02SXGN-RC">
-<attribute name="PARTNO" value="QPC02SXGN-RC"/>
-</part>
-<part name="JP2" library="pinhead edit" deviceset="PINHD-1X3" device="" package3d_urn="urn:adsk.eagle:package:22458/2" value="QPC02SXGN-RC">
-<attribute name="PARTNO" value="QPC02SXGN-RC"/>
-</part>
-<part name="JP3" library="pinhead edit" deviceset="PINHD-1X3" device="" package3d_urn="urn:adsk.eagle:package:22458/2" value="QPC02SXGN-RC">
-<attribute name="PARTNO" value="QPC02SXGN-RC"/>
-</part>
+<part name="JP1" library="pinhead edit" deviceset="PINHD-1X3" device="" package3d_urn="urn:adsk.eagle:package:22458/2" value="QPC02SXGN-RC"/>
+<part name="JP2" library="pinhead edit" deviceset="PINHD-1X3" device="" package3d_urn="urn:adsk.eagle:package:22458/2" value="QPC02SXGN-RC"/>
+<part name="JP3" library="pinhead edit" deviceset="PINHD-1X3" device="" package3d_urn="urn:adsk.eagle:package:22458/2" value="QPC02SXGN-RC"/>
 <part name="FRAME2" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A4-35SC" device=""/>
+<part name="CONN2" library="D01-9922046" deviceset="D01-9922046" device="" value="D01-9922046">
+<attribute name="PARTNO" value="D01-9922046 "/>
+</part>
+<part name="CONN3" library="D01-9922046" deviceset="D01-9922046" device="" value="D01-9922046">
+<attribute name="PARTNO" value="QPC02SXGN-RC"/>
+</part>
+<part name="JP_C1" library="QPC02SXGN-RC" deviceset="QPC02SXGN-RC" device="" value="QPC02SXGN-RC">
+<attribute name="PARTNO" value="QPC02SXGN-RC"/>
+</part>
+<part name="JP_C2" library="QPC02SXGN-RC" deviceset="QPC02SXGN-RC" device="" value="QPC02SXGN-RC">
+<attribute name="PARTNO" value="QPC02SXGN-RC"/>
+</part>
+<part name="JP_C3" library="QPC02SXGN-RC" deviceset="QPC02SXGN-RC" device="" value="QPC02SXGN-RC">
+<attribute name="PARTNO" value="QPC02SXGN-RC"/>
+</part>
 </parts>
 <sheets>
 <sheet>
@@ -9099,17 +9182,27 @@ fuente de poder</text>
 <text x="-146.05" y="121.92" size="1.778" layer="97">Lo errores arrojados por ERC, están aprobados, ya que surgen de los pines de poder de la MCU que no están conectados y no son usados en el diseño.</text>
 <text x="35.56" y="-67.31" size="2.54" layer="94">Wi-Fi SHIELD</text>
 <text x="114.3" y="-78.74" size="2.54" layer="94">3</text>
-<text x="33.02" y="-85.09" size="2.54" layer="94">18-10-2023</text>
+<text x="33.02" y="-85.09" size="2.54" layer="94">3-11-2023</text>
 <text x="38.1" y="-62.23" size="10.16" layer="94">GRUPO 8</text>
-<text x="-142.24" y="-53.34" size="2.54" layer="94">Se cambia el pin al que está conectado el botón para facilitar el ruteo</text>
-<text x="-143.51" y="-49.53" size="2.54" layer="94">OBSERVACIONES</text>
-<text x="-142.24" y="-58.42" size="2.54" layer="94">Se eliminan los conectores externos del shield porque no se estaban utilizando</text>
 <text x="-16.51" y="49.53" size="1.778" layer="97">RXD</text>
 <text x="-2.032" y="55.372" size="1.778" layer="97">Prog</text>
 <text x="-2.032" y="47.244" size="1.778" layer="97">MCU</text>
 <text x="-35.56" y="60.198" size="1.778" layer="97">TXD</text>
 <text x="-17.272" y="59.944" size="1.778" layer="97">MCU</text>
 <text x="-17.272" y="62.738" size="1.778" layer="97">Prog</text>
+<text x="-121.92" y="-68.58" size="2.286" layer="94">Los cuadrados a la izquierda corresponden a los Pitch Jumper 
+Los rectángulos corresponden a los conectores de 20 pines 
+que se cortarán para ser usados como:
+- M1-CN5
+- M1-CN8
+- M1-CN9
+- M1-CN6</text>
+<text x="-121.92" y="-81.28" size="2.032" layer="94">OBS:
+- Los JP no tienen PARTNO porque los conectores de la izquierda ya lo traen.
+- En la página 2 está el detalle de todas la revisiones.</text>
+<text x="-104.14" y="-68.58" size="2.286" layer="94">- JP1
+- JP2
+- JP3</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="-62.23" y="-12.7" smashed="yes">
@@ -9310,17 +9403,39 @@ fuente de poder</text>
 <instance part="JP1" gate="A" x="-21.59" y="62.23" smashed="yes">
 <attribute name="NAME" x="-27.94" y="67.945" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-30.988" y="54.356" size="1.778" layer="96"/>
-<attribute name="PARTNO" x="-21.59" y="62.23" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="JP2" gate="A" x="-8.89" y="52.07" smashed="yes" rot="R180">
 <attribute name="NAME" x="-6.096" y="59.309" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="4.064" y="46.228" size="1.778" layer="96" rot="R180"/>
-<attribute name="PARTNO" x="-8.89" y="52.07" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
 <instance part="JP3" gate="A" x="-116.84" y="72.39" smashed="yes">
 <attribute name="NAME" x="-123.19" y="78.105" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-128.778" y="65.024" size="1.778" layer="96"/>
-<attribute name="PARTNO" x="-116.84" y="72.39" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="CONN2" gate="G$1" x="-142.24" y="-15.24" smashed="yes">
+<attribute name="NAME" x="-144.78" y="2.54" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-144.78" y="-33.02" size="1.778" layer="95"/>
+<attribute name="PARTNO" x="-142.24" y="-15.24" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="CONN3" gate="G$1" x="-142.24" y="-60.96" smashed="yes">
+<attribute name="NAME" x="-144.78" y="-43.18" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-144.78" y="-78.74" size="1.778" layer="95"/>
+<attribute name="PARTNO" x="-142.24" y="-60.96" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="JP_C1" gate="G$1" x="-142.24" y="38.1" smashed="yes">
+<attribute name="NAME" x="-144.78" y="41.91" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-144.78" y="33.02" size="1.778" layer="96"/>
+<attribute name="PARTNO" x="-142.24" y="38.1" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="JP_C2" gate="G$1" x="-142.24" y="25.4" smashed="yes">
+<attribute name="NAME" x="-144.78" y="29.21" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-144.78" y="20.32" size="1.778" layer="96"/>
+<attribute name="PARTNO" x="-142.24" y="25.4" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="JP_C3" gate="G$1" x="-142.24" y="12.7" smashed="yes">
+<attribute name="NAME" x="-144.78" y="16.51" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-144.78" y="7.62" size="1.778" layer="96"/>
+<attribute name="PARTNO" x="-142.24" y="12.7" size="1.778" layer="96" display="off"/>
 </instance>
 </instances>
 <busses>
@@ -9779,7 +9894,7 @@ fuente de poder</text>
 <sheet>
 <plain>
 <text x="78.232" y="258.826" size="2.54" layer="94">Wi-Fi SHIELD</text>
-<text x="128.016" y="261.112" size="1.778" layer="94">2-11-2023</text>
+<text x="128.016" y="261.112" size="1.778" layer="94">3-11-2023</text>
 <text x="166.878" y="262.128" size="3.81" layer="94" rot="R180">Historial de revisiones
 
 Rev1: Revisión inicial
@@ -9791,8 +9906,7 @@ Se eliminan los conectores externos del shield porque no se estaban
 utilizando
 
 Rev3: Cambiadas algunas resistencias de 0 Ohm por jumpers
-
-</text>
+R11-R14, R16 y R17 sustituidas por JP1-JP3</text>
 </plain>
 <instances>
 <instance part="FRAME2" gate="G$1" x="0" y="-0.254" smashed="yes">
