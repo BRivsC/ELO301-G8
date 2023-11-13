@@ -60,12 +60,12 @@ void Error_Handler(void);
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
 #define B1_EXTI_IRQn EXTI15_10_IRQn
+#define SENSOR_SCL_Pin GPIO_PIN_0
+#define SENSOR_SCL_GPIO_Port GPIOC
+#define SENSOR_SDA_Pin GPIO_PIN_1
+#define SENSOR_SDA_GPIO_Port GPIOC
 #define MESP_EN_Pin GPIO_PIN_0
 #define MESP_EN_GPIO_Port GPIOA
-#define TX_STM_Pin GPIO_PIN_2
-#define TX_STM_GPIO_Port GPIOA
-#define RX_STM_Pin GPIO_PIN_3
-#define RX_STM_GPIO_Port GPIOA
 #define LD4_Pin GPIO_PIN_5
 #define LD4_GPIO_Port GPIOA
 #define GPIO_BOTON_Pin GPIO_PIN_10
@@ -75,11 +75,8 @@ void Error_Handler(void);
 #define GPIO_LED_VERDE_GPIO_Port GPIOC
 #define SENSOR_INT_Pin GPIO_PIN_8
 #define SENSOR_INT_GPIO_Port GPIOA
-#define SENSOR_INT_EXTI_IRQn EXTI9_5_IRQn
-#define SENSOR_SCL_Pin GPIO_PIN_9
-#define SENSOR_SCL_GPIO_Port GPIOA
-#define SENSOR_SDA_Pin GPIO_PIN_10
-#define SENSOR_SDA_GPIO_Port GPIOA
+#define TX_STM_Pin GPIO_PIN_9
+#define TX_STM_GPIO_Port GPIOA
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
@@ -88,6 +85,8 @@ void Error_Handler(void);
 #define SWO_GPIO_Port GPIOB
 #define GPIO_LED_ROJO_Pin GPIO_PIN_6
 #define GPIO_LED_ROJO_GPIO_Port GPIOB
+#define RX_STM_Pin GPIO_PIN_7
+#define RX_STM_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

@@ -127,3 +127,22 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64 D:\Docs\EAGLE\projects
 
 !ENTRY org.eclipse.cdt.core 1 0 2023-11-09 21:09:55.980
 !MESSAGE Indexed 'FW Wi-Fi Shield Rev1' (24 sources, 118 headers) in 5.17 sec: 11,700 declarations; 51,192 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0.27%)
+!SESSION 2023-11-12 23:28:57.018 -----------------------------------------------
+eclipse.buildId=Version 1.13.2
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_CL
+Framework arguments:  D:\Docs\EAGLE\projects\git\ELO301-G8\Firmware\FW Wi-Fi Shield Rev1\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 D:\Docs\EAGLE\projects\git\ELO301-G8\Firmware\FW Wi-Fi Shield Rev1\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2023-11-12 23:30:47.057
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-11-12 23:30:47.062
+!MESSAGE Log4j2 initialized with config file D:\Docs\EAGLE\projects\git\ELO301-G8\Firmware\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-11-12 23:31:05.855
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-11-12 23:31:13.356
+!MESSAGE Indexed 'FW Wi-Fi Shield Rev1' (24 sources, 118 headers) in 6.38 sec: 11,704 declarations; 51,422 references; 3 unresolved inclusions; 47 syntax errors; 172 unresolved names (0.27%)
