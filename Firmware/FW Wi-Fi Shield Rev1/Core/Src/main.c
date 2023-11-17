@@ -18,6 +18,9 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "tim.h"
+#include "usart.h"
+#include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -40,28 +43,27 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-I2C_HandleTypeDef hi2c3;
-
-UART_HandleTypeDef huart1;
-UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-
+enum ESTADO estado=WAIT_ESP;		//Variable que identifica el estado del sistema (FSM).
+int BTN=0;							//1 si se resionó el botón, 0 eoc.
+enum ESP_ESTADO esp_connect=WAIT;	//resultado de la conexión a internet de la ESP.
+enum ESP_ESTADO esp_envio=WAIT; 	//resultado del envío de datos.
+volatile char msg;
+int responder=0;
+int ESP_OK=0;
+int ESP_READY=0;
+int count=0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
-static void MX_USART2_UART_Init(void);
-static void MX_USART1_UART_Init(void);
-static void MX_I2C3_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
 /* USER CODE END 0 */
 
 /**
@@ -71,7 +73,13 @@ static void MX_I2C3_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	//enum ESTADO estado=WAIT_ESP;		//Variable que identifica el estado del sistema (FSM).
+	int intentos=0;						//Contador de intentos de conexión.
+	enum LEDS leds=OFF;					//estado de los leds de estado.
+							//1 para ESP lista para trabajar, 0 eoc.
+	//int BTN=0;							//1 si se resionó el botón, 0 eoc.
+	int reconexion=0;					//1 si se intenta reconexión, 0 eoc.
+	chg_led_state(leds);				//al iniciar el sistema se apagan los leds (estado de WAIT_ESP)
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -96,15 +104,116 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   MX_USART1_UART_Init();
-  MX_I2C3_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
-  HAL_I2CEx_AnalogFilter_Config
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  HAL_UART_Receive_IT(&huart1, (uint8_t*) &msg, 1);
+  while (1){
+	  switch(estado){
+	  	  case WAIT_ESP:
+	  		  if(ESP_OK){
+		  		  reconexion=0;
+	  			  intentos=0;
+	  			  esp_connect=FAIL;
+	  			  //mandar comando AT para conexión
+	  			  setModeToStation();
+	  			  if(ESP_READY==1){
+	  				estado=ESTABLECER_CONEXION_WI_FI;
+	  				ESP_READY=0;
+	  			  }
+	  			  //HAL_UART_Transmit(&huart1, "test\n", 5, 1000);
+
+	  		  }
+			  break;
+	  	  case ESTABLECER_CONEXION_WI_FI:
+			leds=OFF;
+	  		chg_led_state(leds);
+	  		  if((intentos<3)&&(esp_connect==FAIL)){		//3 intentos para establecer conexión
+	  			  //mandar comando AT para conexión
+	  			  setAPcnx();
+	  			  intentos+=1;
+	  			  if (intentos != 3){
+	  				  esp_connect=WAIT;
+	  			  }
+	  		  }
+	  		  else if((esp_connect==OK)&&(reconexion==0)){	//Correcta conexión por primera vez
+	  		  	  leds=CONEXION_EXITOSA;
+	  			  chg_led_state(leds);
+	  			  estado=CONECTADO;
+	  		  }
+	  		  else if((esp_connect==OK)&&(reconexion==1)){	//Reconexión para volver a intentar el envío de datos
+	  			  leds=BUSY;
+	  			  chg_led_state(leds);
+	  			  esp_envio=WAIT;
+	  			  estado=ENVIAR_DATOS;
+	  		  }
+	  		  else if((esp_connect==FAIL)&&(intentos==3)){	//Falla la conexión, se reinicia la ESP
+	  			  //no reset ESP
+	  			  ESP_OK=0;
+	  			  leds=FALLO_CRITICO;
+	  			  chg_led_state(leds);
+	  			  estado=FALLO_CONEXION;
+	  		  }
+	  		  break;
+	  	  case CONECTADO:
+	  		  if(BTN){//Hay que recolectar y enviar datos
+	  			  leds=BUSY;
+	  			  chg_led_state(leds);
+	  			  //lee sensor
+	  			  //enviar datos
+	  			  sendSensorData((uint8_t*)"150");
+	  			  esp_envio=WAIT;
+	  			  BTN=0;
+	  			  estado=ENVIAR_DATOS;
+	  		  }
+	  		  break;
+	  	  case ENVIAR_DATOS:
+				//if(BTN){
+					//Envío datos
+					//BTN=0;
+				//}
+	  		  if(esp_envio==OK){//se enviaron correctamente los datos
+	  			  leds=CONEXION_EXITOSA;
+	  			  chg_led_state(leds);
+	  			  estado=CONECTADO;
+	  		  }
+	  		  else if(esp_envio==FAIL){//Fallo al enviar datos
+	  			  //leds=FALLO_CRITICO;
+	  			  //chg_led_state(leds);
+	  			  estado=PERDIO_CONEXION;
+	  		  }
+	  		  
+	  		  break;
+	  	  case PERDIO_CONEXION:
+			leds=FALLO_CRITICO;
+	  		chg_led_state(leds);
+	  		  reconexion=1;
+	  		//  leds=OFF;
+	  		//  chg_led_state(leds);
+	  		  esp_connect=WAIT;
+	  		  intentos=0;
+	  		  estado=ESTABLECER_CONEXION_WI_FI;
+
+	  		  break;
+	  	  case FALLO_CONEXION:
+			HAL_Delay(1000);
+			//reset ESP
+			resetModule();
+			estado=WAIT_ESP;
+			/*	
+	  		  if(ESP_OK){//Se reseteó correctamente la ESP
+	  			  leds=OFF;
+	  			  chg_led_state(leds);
+	  			  estado=WAIT_ESP;
+	  		  } */
+	  		break;
+			
+
+	  };
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -159,197 +268,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-}
-
-/**
-  * @brief I2C3 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_I2C3_Init(void)
-{
-
-  /* USER CODE BEGIN I2C3_Init 0 */
-
-  /* USER CODE END I2C3_Init 0 */
-
-  /* USER CODE BEGIN I2C3_Init 1 */
-
-  /* USER CODE END I2C3_Init 1 */
-  hi2c3.Instance = I2C3;
-  hi2c3.Init.Timing = 0x10909CEC;
-  hi2c3.Init.OwnAddress1 = 0;
-  hi2c3.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-  hi2c3.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-  hi2c3.Init.OwnAddress2 = 0;
-  hi2c3.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
-  hi2c3.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-  hi2c3.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-  if (HAL_I2C_Init(&hi2c3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure Analogue filter
-  */
-  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c3, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure Digital filter
-  */
-  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c3, 0) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN I2C3_Init 2 */
-
-  /* USER CODE END I2C3_Init 2 */
-
-}
-
-/**
-  * @brief USART1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_USART1_UART_Init(void)
-{
-
-  /* USER CODE BEGIN USART1_Init 0 */
-
-  /* USER CODE END USART1_Init 0 */
-
-  /* USER CODE BEGIN USART1_Init 1 */
-
-  /* USER CODE END USART1_Init 1 */
-  huart1.Instance = USART1;
-  huart1.Init.BaudRate = 115200;
-  huart1.Init.WordLength = UART_WORDLENGTH_8B;
-  huart1.Init.StopBits = UART_STOPBITS_1;
-  huart1.Init.Parity = UART_PARITY_NONE;
-  huart1.Init.Mode = UART_MODE_TX_RX;
-  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
-  huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  if (HAL_UART_Init(&huart1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN USART1_Init 2 */
-
-  /* USER CODE END USART1_Init 2 */
-
-}
-
-/**
-  * @brief USART2 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_USART2_UART_Init(void)
-{
-
-  /* USER CODE BEGIN USART2_Init 0 */
-
-  /* USER CODE END USART2_Init 0 */
-
-  /* USER CODE BEGIN USART2_Init 1 */
-
-  /* USER CODE END USART2_Init 1 */
-  huart2.Instance = USART2;
-  huart2.Init.BaudRate = 115200;
-  huart2.Init.WordLength = UART_WORDLENGTH_8B;
-  huart2.Init.StopBits = UART_STOPBITS_1;
-  huart2.Init.Parity = UART_PARITY_NONE;
-  huart2.Init.Mode = UART_MODE_TX_RX;
-  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
-  huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-  huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  if (HAL_UART_Init(&huart2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN USART2_Init 2 */
-
-  /* USER CODE END USART2_Init 2 */
-
-}
-
-/**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_GPIO_Init(void)
-{
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-/* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
-
-  /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOH_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, MESP_EN_Pin|LD4_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIO_LED_VERDE_GPIO_Port, GPIO_LED_VERDE_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIO_LED_ROJO_GPIO_Port, GPIO_LED_ROJO_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin : B1_Pin */
-  GPIO_InitStruct.Pin = B1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : MESP_EN_Pin LD4_Pin */
-  GPIO_InitStruct.Pin = MESP_EN_Pin|LD4_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : GPIO_BOTON_Pin */
-  GPIO_InitStruct.Pin = GPIO_BOTON_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIO_BOTON_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : GPIO_LED_VERDE_Pin */
-  GPIO_InitStruct.Pin = GPIO_LED_VERDE_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIO_LED_VERDE_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : SENSOR_INT_Pin */
-  GPIO_InitStruct.Pin = SENSOR_INT_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(SENSOR_INT_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : GPIO_LED_ROJO_Pin */
-  GPIO_InitStruct.Pin = GPIO_LED_ROJO_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIO_LED_ROJO_GPIO_Port, &GPIO_InitStruct);
-
-  /* EXTI interrupt init*/
-  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
-
-/* USER CODE BEGIN MX_GPIO_Init_2 */
-/* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */

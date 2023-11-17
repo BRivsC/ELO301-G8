@@ -1,0 +1,31 @@
+/*
+ * funciones.c
+ *
+ *  Created on: Nov 10, 2023
+ *      Author: tomas
+ */
+
+
+#include "funciones.h"
+
+
+void chg_led_state(enum LEDS leds){
+	switch(leds){
+	case CONEXION_EXITOSA:
+		HAL_GPIO_WritePin(GPIO_LED_VERDE_GPIO_Port, GPIO_LED_VERDE_Pin, 1);
+		HAL_GPIO_WritePin(GPIO_LED_ROJO_GPIO_Port, GPIO_LED_ROJO_Pin, 0);
+		break;
+	case BUSY:
+		HAL_GPIO_WritePin(GPIO_LED_VERDE_GPIO_Port, GPIO_LED_VERDE_Pin, 1);
+		HAL_GPIO_WritePin(GPIO_LED_ROJO_GPIO_Port, GPIO_LED_ROJO_Pin, 1);
+		break;
+	case FALLO_CRITICO:
+		HAL_GPIO_WritePin(GPIO_LED_VERDE_GPIO_Port, GPIO_LED_VERDE_Pin, 0);
+		HAL_GPIO_WritePin(GPIO_LED_ROJO_GPIO_Port, GPIO_LED_ROJO_Pin, 1);
+		break;
+	case OFF:
+		HAL_GPIO_WritePin(GPIO_LED_VERDE_GPIO_Port, GPIO_LED_VERDE_Pin, 0);
+		HAL_GPIO_WritePin(GPIO_LED_ROJO_GPIO_Port, GPIO_LED_ROJO_Pin, 0);
+	}
+
+};
