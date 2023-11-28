@@ -34,6 +34,7 @@ extern "C" {
 #include <stdio.h>
 #include "defines.h"
 #include "funciones.h"
+#include "stdint.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -68,10 +69,6 @@ void Error_Handler(void);
 #define SENSOR_SDA_GPIO_Port GPIOC
 #define MESP_EN_Pin GPIO_PIN_0
 #define MESP_EN_GPIO_Port GPIOA
-#define USART_TX_Pin GPIO_PIN_2
-#define USART_TX_GPIO_Port GPIOA
-#define USART_RX_Pin GPIO_PIN_3
-#define USART_RX_GPIO_Port GPIOA
 #define LD4_Pin GPIO_PIN_5
 #define LD4_GPIO_Port GPIOA
 #define GPIO_BOTON_Pin GPIO_PIN_10
@@ -93,6 +90,7 @@ void Error_Handler(void);
 #define SWO_GPIO_Port GPIOB
 #define GPIO_LED_ROJO_Pin GPIO_PIN_6
 #define GPIO_LED_ROJO_GPIO_Port GPIOB
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

@@ -9,9 +9,12 @@
 #define INC_DEFINES_H_
 
 enum ESTADO{ 	//definición de estados para la FSM.
-	WAIT_ESP,		//Esperando a inicialización de ESP
+	WAIT_ESP,		//Esperando a inicialización de ESP ("ready")
+	QUERY_CONEXION, 			//
+	WAIT_OK_ESP,	//Esperando respuesta a comando AT de modo ("OK")
 	ESTABLECER_CONEXION_WI_FI,	//Intentar establecer conexión a interet
 	CONECTADO,		//La ESP está conectada a internet
+	WAIT_ENVIAR_DATOS, //Espera resultados del envío de datos
 	ENVIAR_DATOS,	//La ESP está enviando datos
 	PERDIO_CONEXION,//La ESP perdió conexión a internet
 	FALLO_CONEXION	//La ESP no logró la conexión a internet

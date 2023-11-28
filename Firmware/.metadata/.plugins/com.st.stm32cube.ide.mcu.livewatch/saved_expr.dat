@@ -1,0 +1,9 @@
+leds
+estado
+esp_connect
+esp_envio
+ESP_OK
+ESP_READY
+timeout
+uwTick
+rx_buffer

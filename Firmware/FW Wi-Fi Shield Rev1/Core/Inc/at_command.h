@@ -17,7 +17,7 @@
 #define RST				"AT+RST\r\n"
 
 #define FIXED_AP		1
-#define CWJAP			"AT+CWJAP=\"Yaldy21\",\"12345678\"\r\n"
+#define CWJAP			"AT+CWJAP=\"AndroidAP47A9\",\"123345678\"\r\n"
 
 
 #define HTTPCLIENT		"AT+HTTPCLIENT=2,0,"

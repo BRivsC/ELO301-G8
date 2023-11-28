@@ -1,0 +1,4 @@
+../Core/Src/at_command.c:16:6:setModeToStation	1
+../Core/Src/at_command.c:27:6:setAPcnx	1
+../Core/Src/at_command.c:46:6:sendSensorData	1
+../Core/Src/at_command.c:59:6:resetModule	1

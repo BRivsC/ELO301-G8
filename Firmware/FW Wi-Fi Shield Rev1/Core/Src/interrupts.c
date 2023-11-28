@@ -15,20 +15,24 @@
 #include "usart.h"
 #include "tim.h"
 
+extern int NI;
+//extern int timeout;
 extern char msg;
-extern int responder;
+extern int disc;
 extern int BTN;
+extern enum LEDS leds;
 extern enum ESTADO estado;
 extern enum ESP_ESTADO esp_connect;	//resultado de la conexión a internet de la ESP.
 extern enum ESP_ESTADO esp_envio;
 extern int ESP_OK;
 extern int ESP_READY;
 extern int count;
-uint8_t rx_buffer [50];
+uint8_t rx_buffer [512];
+extern int Q_OK;
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 	// Interrupción desde el botón de la Shield
-	if ((GPIO_Pin == GPIO_BOTON_Pin) && (estado==CONECTADO)){ //Ante interrupción del botón, cambiar flag BTN a 1 cuando corresponda
+	if ((GPIO_Pin == B1_Pin/*GPIO_BOTON_Pin*/) && (estado==CONECTADO)){ //Ante interrupción del botón, cambiar flag BTN a 1 cuando corresponda
 		BTN=1;
 	}
 	HAL_UART_Receive_IT(&huart1, (uint8_t*) &msg, 1);
@@ -43,8 +47,8 @@ void HAL_UART_RxCpltCallback (UART_HandleTypeDef *huart)
 	 count++;
 
 	 if (strstr(rx_buffer,"WIFI DISCONNECT")!=NULL){
-		 //estado=PERDIO_CONEXION;
-		 responder=1;
+		 estado=PERDIO_CONEXION;
+		 disc=1;
 		 count=0;
 		 memset(rx_buffer,'\0',sizeof(rx_buffer));
 	 }
@@ -59,44 +63,94 @@ void HAL_UART_RxCpltCallback (UART_HandleTypeDef *huart)
 	 	 case WAIT_ESP:
 	 		if (strstr(rx_buffer,"ready")!=NULL){
 	 			ESP_OK=1;
+	 			estado=WAIT_ESP;
 	 			count=0;
 	 			memset(rx_buffer,'\0',sizeof(rx_buffer));
 	 		}
+			if (strstr(rx_buffer,"OK")!=NULL){
+				estado=WAIT_ESP;
+				count=0;
+				memset(rx_buffer,'\0',sizeof(rx_buffer));
+			}
+	 		else{
+	 			estado=WAIT_ESP;
+	 		}
+	 		break;
+	 	 case QUERY_CONEXION:
+			if (strstr(rx_buffer,"OK")!=NULL){
+				Q_OK=1;
+				count=0;
+				estado=QUERY_CONEXION;
+				memset(rx_buffer,'\0',sizeof(rx_buffer));
+			}
+			else{
+				estado=QUERY_CONEXION;
+			}
+	 		 break;
+	 	 case WAIT_OK_ESP:
 	 		if (strstr(rx_buffer,"OK")!=NULL){
 				ESP_READY=1;
 				count=0;
+				estado=WAIT_OK_ESP;
 				memset(rx_buffer,'\0',sizeof(rx_buffer));
+	 		}
+	 		else{
+	 			estado=WAIT_OK_ESP;
 	 		}
 
 	 		break;
 	 	case ESTABLECER_CONEXION_WI_FI:
 	 		if (strstr(rx_buffer,"OK")!=NULL){
 	 			esp_connect=OK;
+	 			estado=ESTABLECER_CONEXION_WI_FI;
 				count=0;
 				memset(rx_buffer,'\0',sizeof(rx_buffer));
 	 		}
 	 		else if (strstr(rx_buffer,"ERROR")!=NULL){
 	 			esp_connect=FAIL;
+	 			estado=ESTABLECER_CONEXION_WI_FI;
 	 			//intentos++;
 				count=0;
 				memset(rx_buffer,'\0',sizeof(rx_buffer));
 	 		}
+	 		else{
+	 			estado=ESTABLECER_CONEXION_WI_FI;
+	 		}
+	 		break;
+	 	case CONECTADO:
+	 		if (disc==1){
+	 		estado=ESTABLECER_CONEXION_WI_FI;
+	 		}
+	 		else{
+	 			estado=CONECTADO;
+	 		}
 	 		break;
 	 	case ENVIAR_DATOS:
+	 		estado=ENVIAR_DATOS;
+	 		break;
+	 	case WAIT_ENVIAR_DATOS:
 			if (strstr(rx_buffer,"OK")!=NULL){
 				esp_envio=OK;
 				count=0;
+				estado=WAIT_ENVIAR_DATOS;
 				memset(rx_buffer,'\0',sizeof(rx_buffer));
 			}
 			else if (strstr(rx_buffer,"ERROR")!=NULL){
 				esp_envio=FAIL;
 				count=0;
+				estado=WAIT_ENVIAR_DATOS;
 				memset(rx_buffer,'\0',sizeof(rx_buffer));
+			}
+			else{
+				estado=WAIT_ENVIAR_DATOS;
 			}
 			//no entendí estado de else if (BTN)
 			break;
 	 	case FALLO_CONEXION:
-
+	 		estado=FALLO_CONEXION;
+	 		break;
+	 	case PERDIO_CONEXION:
+	 		estado=PERDIO_CONEXION;
 	 		break;
 	 }
 
@@ -113,3 +167,15 @@ void HAL_UART_RxCpltCallback (UART_HandleTypeDef *huart)
 
 }
 
+
+/*void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	if(htim->Instance == TIM3){
+		leds=OFF;
+		timeout=1;
+		NI=0;
+		chg_led_state(leds);
+		estado=ESTABLECER_CONEXION_WI_FI;
+		HAL_TIM_Base_Stop_IT(&htim3);
+	}
+
+}*/

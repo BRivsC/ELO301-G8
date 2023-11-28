@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "i2c.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -25,11 +26,13 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "interrupts.h"
+#include "at_command.h"
+#include "GebraBit_APDS9306.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+GebraBit_APDS9306 APDS9306_Module;	// struct con los datos del sensor
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -39,7 +42,10 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+#define SENSOR_TEST 0 	// Macro para el test del sensor. 1 para testearlo, 0 para funcionar normalmente
+#define SENSOR_TEST_WELCOME_MSG "Modo de prueba del sensor. Para salir, definir SENSOR_TEST de main.c en 0 y recompilar\n\r"
+#define MSG_SIZE 30		// Tamaño del mensaje a enviar por la UART2
+#define DELAY_1S 1000	// Delay de 1 segundo (1000 ms) para el test
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -50,10 +56,15 @@ int BTN=0;							//1 si se resionó el botón, 0 eoc.
 enum ESP_ESTADO esp_connect=WAIT;	//resultado de la conexión a internet de la ESP.
 enum ESP_ESTADO esp_envio=WAIT; 	//resultado del envío de datos.
 volatile char msg;
-int responder=0;
+int disc=0;
 int ESP_OK=0;
 int ESP_READY=0;
 int count=0;
+//int timeout=1;
+int NI=1;
+enum LEDS leds=OFF;					//estado de los leds de estado.
+int Q_OK=0;
+extern uint8_t rx_buffer;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -75,12 +86,14 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	//enum ESTADO estado=WAIT_ESP;		//Variable que identifica el estado del sistema (FSM).
 	int intentos=0;						//Contador de intentos de conexión.
-	enum LEDS leds=OFF;					//estado de los leds de estado.
+	uint32_t timeout=0;
+	uint32_t DELAY = 2000;
 							//1 para ESP lista para trabajar, 0 eoc.
 	//int BTN=0;							//1 si se resionó el botón, 0 eoc.
 	int reconexion=0;					//1 si se intenta reconexión, 0 eoc.
 	chg_led_state(leds);				//al iniciar el sistema se apagan los leds (estado de WAIT_ESP)
-  /* USER CODE END 1 */
+
+	/* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -103,41 +116,108 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART2_UART_Init();
-  MX_USART1_UART_Init();
+  MX_I2C3_Init();
   MX_TIM3_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+
+#if SENSOR_TEST
+  /* Test del sensor:
+   * 	- Leer ID del sensor y printear su ID
+   * 	- Tomar mediciones cada 1 segundo y enviarlas por la UART2 como texto
+   */
+  char msg[MSG_SIZE];
+  float luminosidad;
+  int luminosidad_int;
+
+  GB_APDS9306_initialize(&APDS9306_Module);
+  GB_APDS9306_Configuration(&APDS9306_Module);
+  // Mensaje de bienvenida
+  HAL_UART_Transmit_IT(&huart2, (uint8_t*) SENSOR_TEST_WELCOME_MSG, strlen(SENSOR_TEST_WELCOME_MSG));
+
+  // Obtener ID y mandarla
+  sprintf(msg, "ID f: %02X\n",APDS9306_Module.PART_ID);
+  HAL_UART_Transmit_IT(&huart2, (uint8_t*) msg, strlen(msg));
+
+  // Loop infinito: Tomar mediciones cada 1 segundo permanentemente
+  while(1){
+	  // Obtener medición
+	  GB_APDS9306_Get_Data(&APDS9306_Module);
+
+	  // Truco para mostrarlo como INT para evitar reconfigurar MCU
+	  luminosidad = APDS9306_Module.LUMINOSITY;
+      luminosidad_int = luminosidad*10;
+
+      // Generar mensaje y enviarlo por UART2
+      sprintf(msg, "Medición: %d\n",luminosidad_int);
+      HAL_UART_Transmit_IT(&huart2, (uint8_t*) msg, strlen(msg));
+      HAL_Delay(DELAY_1S);
+
+  }
+#endif
+
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   HAL_UART_Receive_IT(&huart1, (uint8_t*) &msg, 1);
+  resetModule();
+  //HAL_UART_Transmit_IT(&huart1, "ATE0\r\n", 6);
   while (1){
 	  switch(estado){
 	  	  case WAIT_ESP:
+	  		//HAL_UART_Transmit(&huart2, "HOLA\r\n", 6, 100);
 	  		  if(ESP_OK){
 		  		  reconexion=0;
 	  			  intentos=0;
 	  			  esp_connect=FAIL;
+	  			  HAL_UART_Transmit_IT(&huart1, "AT+CWQAP\r\n", 10);
+	  			  ESP_OK=0;
+	  			  estado=QUERY_CONEXION;
+	  			  //HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), 100);
 	  			  //mandar comando AT para conexión
-	  			  setModeToStation();
-	  			  if(ESP_READY==1){
-	  				estado=ESTABLECER_CONEXION_WI_FI;
-	  				ESP_READY=0;
-	  			  }
-	  			  //HAL_UART_Transmit(&huart1, "test\n", 5, 1000);
-
+	  			  //setModeToStation();
+	  			  //estado=WAIT_OK_ESP;
+	  		  }
+	  		  else{
+	  			  estado=WAIT_ESP;
 	  		  }
 			  break;
+	  	  case QUERY_CONEXION:
+	  		  if(Q_OK){
+	  			  setModeToStation();
+	  			  HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), 100);
+	  			  estado=WAIT_OK_ESP;
+	  			  Q_OK=0;
+	  		  }
+	  		  else{
+	  			  estado=QUERY_CONEXION;
+	  		  }
+	  		  ESP_READY=0;
+	  		  break;
+	  	  case WAIT_OK_ESP:
+  			  if(ESP_READY==1){
+  				HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), 100);
+  				estado=ESTABLECER_CONEXION_WI_FI;
+  				ESP_READY=0;
+  			  }
+  			  else{
+  				  estado=WAIT_OK_ESP;
+  			  }
+  			  break;
 	  	  case ESTABLECER_CONEXION_WI_FI:
-			leds=OFF;
-	  		chg_led_state(leds);
+	  		  estado=ESTABLECER_CONEXION_WI_FI;
 	  		  if((intentos<3)&&(esp_connect==FAIL)){		//3 intentos para establecer conexión
 	  			  //mandar comando AT para conexión
 	  			  setAPcnx();
 	  			  intentos+=1;
 	  			  if (intentos != 3){
 	  				  esp_connect=WAIT;
+	  				  estado=ESTABLECER_CONEXION_WI_FI;
+	  			  }
+	  			  else{
+	  				  estado=ESTABLECER_CONEXION_WI_FI;
 	  			  }
 	  		  }
 	  		  else if((esp_connect==OK)&&(reconexion==0)){	//Correcta conexión por primera vez
@@ -152,64 +232,79 @@ int main(void)
 	  			  estado=ENVIAR_DATOS;
 	  		  }
 	  		  else if((esp_connect==FAIL)&&(intentos==3)){	//Falla la conexión, se reinicia la ESP
-	  			  //no reset ESP
 	  			  ESP_OK=0;
 	  			  leds=FALLO_CRITICO;
 	  			  chg_led_state(leds);
+	  			  timeout=HAL_GetTick();
 	  			  estado=FALLO_CONEXION;
+	  		  }
+	  		  else{
+	  			  estado=ESTABLECER_CONEXION_WI_FI;
 	  		  }
 	  		  break;
 	  	  case CONECTADO:
-	  		  if(BTN){//Hay que recolectar y enviar datos
+	  		  if(BTN && disc==0){//Hay que recolectar y enviar datos
 	  			  leds=BUSY;
 	  			  chg_led_state(leds);
 	  			  //lee sensor
-	  			  //enviar datos
-	  			  sendSensorData((uint8_t*)"150");
 	  			  esp_envio=WAIT;
 	  			  BTN=0;
 	  			  estado=ENVIAR_DATOS;
 	  		  }
+	  		  else if(disc==1){
+	  			  disc=0;
+	  			  estado=ESTABLECER_CONEXION_WI_FI;
+	  		  }
+	  		  else{
+	  			  estado=CONECTADO;
+	  		  }
 	  		  break;
 	  	  case ENVIAR_DATOS:
-				//if(BTN){
-					//Envío datos
-					//BTN=0;
-				//}
+	  		  sendSensorData((uint8_t*)"150");
+	  		  estado=WAIT_ENVIAR_DATOS;
+	  		  break;
+	  	  case WAIT_ENVIAR_DATOS:
 	  		  if(esp_envio==OK){//se enviaron correctamente los datos
 	  			  leds=CONEXION_EXITOSA;
 	  			  chg_led_state(leds);
 	  			  estado=CONECTADO;
 	  		  }
 	  		  else if(esp_envio==FAIL){//Fallo al enviar datos
-	  			  //leds=FALLO_CRITICO;
-	  			  //chg_led_state(leds);
+	  			  timeout=HAL_GetTick();
 	  			  estado=PERDIO_CONEXION;
 	  		  }
-	  		  
+	  		  else{
+	  			  estado=WAIT_ENVIAR_DATOS;
+	  		  }
 	  		  break;
 	  	  case PERDIO_CONEXION:
 			leds=FALLO_CRITICO;
 	  		chg_led_state(leds);
-	  		  reconexion=1;
-	  		//  leds=OFF;
-	  		//  chg_led_state(leds);
-	  		  esp_connect=WAIT;
-	  		  intentos=0;
-	  		  estado=ESTABLECER_CONEXION_WI_FI;
-
-	  		  break;
+	  		reconexion=1;
+	  		esp_connect=FAIL; //CAMBIADO A FAIL, PARA QUE INTENTE CONETARSE
+	  		intentos=0;
+	  		if((timeout+DELAY) <= HAL_GetTick()){
+	  			leds=OFF;
+	  			timeout=0;
+	  			chg_led_state(leds);
+	  			estado=ESTABLECER_CONEXION_WI_FI;
+	  		}
+	  		else{
+	  			estado=PERDIO_CONEXION;
+	  		}
+	  		break;
 	  	  case FALLO_CONEXION:
-			HAL_Delay(1000);
-			//reset ESP
-			resetModule();
-			estado=WAIT_ESP;
-			/*	
-	  		  if(ESP_OK){//Se reseteó correctamente la ESP
-	  			  leds=OFF;
-	  			  chg_led_state(leds);
-	  			  estado=WAIT_ESP;
-	  		  } */
+	  		if((timeout+DELAY) <= HAL_GetTick()){
+	  			resetModule();
+	  			leds=OFF;
+	  			timeout=0;
+	  			ESP_OK=0;
+	  			chg_led_state(leds);
+	  			estado=WAIT_ESP;
+	  		}
+	  		else{
+	  			estado=FALLO_CONEXION;
+	  		}
 	  		break;
 			
 
