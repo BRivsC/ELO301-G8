@@ -42,10 +42,11 @@ GebraBit_APDS9306 APDS9306_Module;	// struct con los datos del sensor
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define SENSOR_TEST 0 	// Macro para el test del sensor. 1 para testearlo, 0 para funcionar normalmente
-#define SENSOR_TEST_WELCOME_MSG "Modo de prueba del sensor. Para salir, definir SENSOR_TEST de main.c en 0 y recompilar\n\r"
+#define SENSOR_TEST_EN 0 	// Macro para el test del sensor. 1 para testearlo, 0 para el funcionamiento normal
+#define SENSOR_TEST_WELCOME_MSG "Modo de prueba del sensor.\n\rPara salir, definir SENSOR_TEST_EN de main.c en 0 y recompilar\n\r"
 #define MSG_SIZE 30		// Tamaño del mensaje a enviar por la UART2
 #define DELAY_1S 1000	// Delay de 1 segundo (1000 ms) para el test
+#define TIMEOUT_100MS 100
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -121,7 +122,7 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
-#if SENSOR_TEST
+#if SENSOR_TEST_EN
   /* Test del sensor:
    * 	- Leer ID del sensor y printear su ID
    * 	- Tomar mediciones cada 1 segundo y enviarlas por la UART2 como texto
@@ -133,23 +134,26 @@ int main(void)
   GB_APDS9306_initialize(&APDS9306_Module);
   GB_APDS9306_Configuration(&APDS9306_Module);
   // Mensaje de bienvenida
-  HAL_UART_Transmit_IT(&huart2, (uint8_t*) SENSOR_TEST_WELCOME_MSG, strlen(SENSOR_TEST_WELCOME_MSG));
+//  HAL_UART_Transmit_IT(&huart2, (uint8_t*) SENSOR_TEST_WELCOME_MSG, strlen(SENSOR_TEST_WELCOME_MSG));
+  HAL_UART_Transmit(&huart2, (uint8_t*) SENSOR_TEST_WELCOME_MSG, strlen(SENSOR_TEST_WELCOME_MSG),TIMEOUT_100MS);
 
   // Obtener ID y mandarla
   sprintf(msg, "ID f: %02X\n",APDS9306_Module.PART_ID);
-  HAL_UART_Transmit_IT(&huart2, (uint8_t*) msg, strlen(msg));
+//  sprintf(msg, "ID: %02X\n\r",0xCA);	// Mensaje de prueba. Transmit con timeout evita que se pierdan mensajes sucesivos
 
+  HAL_UART_Transmit(&huart2, (uint8_t*) msg, strlen(msg), TIMEOUT_100MS);
   // Loop infinito: Tomar mediciones cada 1 segundo permanentemente
   while(1){
 	  // Obtener medición
-	  GB_APDS9306_Get_Data(&APDS9306_Module);
+//	  GB_APDS9306_Get_Data(&APDS9306_Module);
 
 	  // Truco para mostrarlo como INT para evitar reconfigurar MCU
 	  luminosidad = APDS9306_Module.LUMINOSITY;
+//	  luminosidad = 4.21;
       luminosidad_int = luminosidad*10;
 
       // Generar mensaje y enviarlo por UART2
-      sprintf(msg, "Medición: %d\n",luminosidad_int);
+      sprintf(msg, "Medición: %d\n\r",luminosidad_int);
       HAL_UART_Transmit_IT(&huart2, (uint8_t*) msg, strlen(msg));
       HAL_Delay(DELAY_1S);
 

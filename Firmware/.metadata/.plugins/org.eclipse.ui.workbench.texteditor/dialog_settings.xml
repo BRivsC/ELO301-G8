@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="hi2c3"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="mems"/>
+			<item value="memset"/>
+			<item value="SENSOR_TEST"/>
 			<item value="hi2c1"/>
 			<item value="responder"/>
 			<item value="estado="/>
@@ -15,6 +18,7 @@
 			<item value="setModetoS"/>
 		</list>
 		<list key="replacehistory">
+			<item value="SENSOR_TEST_EN"/>
 			<item value="hi2c3"/>
 		</list>
 	</section>
