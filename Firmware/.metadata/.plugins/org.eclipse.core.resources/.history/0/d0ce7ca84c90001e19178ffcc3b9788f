@@ -30,7 +30,7 @@ extern int Q_OK;
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 	// Interrupción desde el botón de la Shield
-	if ((GPIO_Pin == GPIO_BOTON_Pin/*GPIO_BOTON_Pin*/) && (estado==CONECTADO)){ //Ante interrupción del botón, cambiar flag BTN a 1 cuando corresponda
+	if ((GPIO_Pin == B1_Pin/*GPIO_BOTON_Pin*/) && (estado==CONECTADO)){ //Ante interrupción del botón, cambiar flag BTN a 1 cuando corresponda
 		BTN=1;
 	}
 	HAL_UART_Receive_IT(&huart1, (uint8_t*) &msg, 1);

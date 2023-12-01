@@ -1468,3 +1468,18 @@ Project's 'FW Wi-Fi Shield Rev1' active one is 'FW Wi-Fi Shield Rev1.ioc' file
 !MESSAGE Invalid Input: Must be project's active .ioc file.
 
 Project's 'FW Wi-Fi Shield Rev1' active one is 'FW Wi-Fi Shield Rev1.ioc' file
+!SESSION 2023-12-01 08:28:53.954 -----------------------------------------------
+eclipse.buildId=Version 1.13.2
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_CL
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2023-12-01 08:29:16.795
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-12-01 08:29:16.807
+!MESSAGE Log4j2 initialized with config file D:\Docs\EAGLE\projects\git\ELO301-G8\Firmware\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-12-01 08:29:41.969
+!MESSAGE Started RMI Server, listening on port 41337

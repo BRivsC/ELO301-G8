@@ -93,9 +93,7 @@ int main(void)
 	//int BTN=0;							//1 si se resionó el botón, 0 eoc.
 	int reconexion=0;					//1 si se intenta reconexión, 0 eoc.
 	chg_led_state(leds);				//al iniciar el sistema se apagan los leds (estado de WAIT_ESP)
-	uint32_t time;
-	uint8_t text[10];
-	memset(text,"\0",10);
+
 	/* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -181,6 +179,10 @@ int main(void)
 	  			  HAL_UART_Transmit_IT(&huart1, "AT+CWQAP\r\n", 10);
 	  			  ESP_OK=0;
 	  			  estado=QUERY_CONEXION;
+	  			  //HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), 100);
+	  			  //mandar comando AT para conexión
+	  			  //setModeToStation();
+	  			  //estado=WAIT_OK_ESP;
 	  		  }
 	  		  else{
 	  			  estado=WAIT_ESP;
@@ -262,10 +264,7 @@ int main(void)
 	  		  }
 	  		  break;
 	  	  case ENVIAR_DATOS:
-	  		  time=HAL_GetTick();
-	  		  memset(text,"\0",10);
-	  		  sprintf(text,"%d",time);
-	  		  sendSensorData((uint8_t*)text);
+	  		  sendSensorData((uint8_t*)"150");
 	  		  estado=WAIT_ENVIAR_DATOS;
 	  		  break;
 	  	  case WAIT_ENVIAR_DATOS:

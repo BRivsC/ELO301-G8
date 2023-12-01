@@ -15,6 +15,8 @@
 #include "usart.h"
 #include "tim.h"
 
+extern int NI;
+//extern int timeout;
 extern char msg;
 extern int disc;
 extern int BTN;
@@ -30,7 +32,7 @@ extern int Q_OK;
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 	// Interrupción desde el botón de la Shield
-	if ((GPIO_Pin == GPIO_BOTON_Pin/*GPIO_BOTON_Pin*/) && (estado==CONECTADO)){ //Ante interrupción del botón, cambiar flag BTN a 1 cuando corresponda
+	if ((GPIO_Pin == B1_Pin/*GPIO_BOTON_Pin*/) && (estado==CONECTADO)){ //Ante interrupción del botón, cambiar flag BTN a 1 cuando corresponda
 		BTN=1;
 	}
 	HAL_UART_Receive_IT(&huart1, (uint8_t*) &msg, 1);
@@ -50,6 +52,12 @@ void HAL_UART_RxCpltCallback (UART_HandleTypeDef *huart)
 		 count=0;
 		 memset(rx_buffer,'\0',sizeof(rx_buffer));
 	 }
+
+	 /*if (strstr(rx_buffer,"OK")!=NULL){
+		 responder=3;
+		count=0;
+		memset(rx_buffer,'\0',sizeof(rx_buffer));
+	 }*/
 
 	 switch(estado){
 	 	 case WAIT_ESP:

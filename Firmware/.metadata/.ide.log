@@ -553,3 +553,8 @@
 2023-12-01 00:53:59,753 [INFO] CADModel:114 - Register for checkConnection events
 2023-12-01 00:53:59,809 [INFO] OpenFileManager:328 - Restore cursor
 2023-12-01 00:54:07,191 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2023-12-01 08:29:17,306 [INFO] Activator:176 - 
+
+
+2023-12-01 08:29:17,325 [INFO] Activator:177 - !SESSION log4j initialized
+2023-12-01 08:29:34,828 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
