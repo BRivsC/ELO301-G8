@@ -1995,8 +1995,8 @@ Your PCBWay Team
 <attribute name="NAME" x="48.5" y="38.5" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="POPULARITY" value="92" x="50.5" y="42.5" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="JP_C1" library="QPC02SXGN-RC" package="PLACEHOLDER" value="QPC02SXGN-RC" x="22.5" y="71.4" smashed="yes" rot="R180">
-<attribute name="PARTNO" value="QPC02SXGN-RC" x="22.5" y="71.4" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="JP_C1" library="QPC02SXGN-RC" package="PLACEHOLDER" value="QPC02SXGN-RC" x="22.5" y="71.6" smashed="yes">
+<attribute name="PARTNO" value="QPC02SXGN-RC" x="22.5" y="71.6" size="1.778" layer="27" display="off"/>
 </element>
 <element name="JP_C2" library="QPC02SXGN-RC" package="PLACEHOLDER" value="QPC02SXGN-RC" x="22.5" y="68.9" smashed="yes">
 <attribute name="PARTNO" value="QPC02SXGN-RC" x="22.5" y="68.9" size="1.778" layer="27" display="off"/>

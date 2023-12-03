@@ -9185,6 +9185,17 @@ fuente de poder</text>
 <text x="-35.56" y="60.198" size="1.778" layer="97">TXD</text>
 <text x="-17.272" y="59.944" size="1.778" layer="97">MCU</text>
 <text x="-17.272" y="62.738" size="1.778" layer="97">Prog</text>
+<text x="-121.92" y="-76.2" size="2.286" layer="94">Los cuadrados a la izquierda corresponden a los Pitch Jumper 
+Los rectángulos corresponden a los conectores de 20 pines 
+que se cortarán para ser usados como:
+- M1-CN5
+- M1-CN8
+- M1-CN9
+- JP1
+- JP2
+- JP3</text>
+<text x="-121.92" y="-83.82" size="1.778" layer="94">OBS: 
+En la página 2 está el detalle de todas la revisiones.</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="-62.23" y="-12.7" smashed="yes">

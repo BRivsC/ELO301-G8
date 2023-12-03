@@ -9198,7 +9198,7 @@ que se cortarán para ser usados como:
 - M1-CN9
 - M1-CN6</text>
 <text x="-121.92" y="-81.28" size="2.032" layer="94">OBS:
-- Los JP no tienen partno porque los conectores de la izquierda ya lo traen.
+- Los JP no tienen PARTNO porque los conectores de la izquierda ya lo traen.
 - En la página 2 está el detalle de todas la revisiones.</text>
 <text x="-104.14" y="-68.58" size="2.286" layer="94">- JP1
 - JP2
@@ -9906,8 +9906,7 @@ Se eliminan los conectores externos del shield porque no se estaban
 utilizando
 
 Rev3: Cambiadas algunas resistencias de 0 Ohm por jumpers
-
-</text>
+R11-R14, R16 y R17 sustituidas por JP1-JP3</text>
 </plain>
 <instances>
 <instance part="FRAME2" gate="G$1" x="0" y="-0.254" smashed="yes">

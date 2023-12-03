@@ -42,10 +42,10 @@ GebraBit_APDS9306 APDS9306_Module;	// struct con los datos del sensor
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define SENSOR_TEST_EN 0 	// Macro para el test del sensor. 1 para testearlo, 0 para el funcionamiento normal
+#define SENSOR_TEST_EN 1 			// Macro para el test del sensor. 1 para testearlo, 0 para el funcionamiento normal
 #define SENSOR_TEST_WELCOME_MSG "Modo de prueba del sensor.\n\rPara salir, definir SENSOR_TEST_EN de main.c en 0 y recompilar\n\r"
-#define MSG_SIZE 30		// Tamaño del mensaje a enviar por la UART2
-#define DELAY_1S 1000	// Delay de 1 segundo (1000 ms) para el test
+#define MSG_SIZE 30					// Tamaño del mensaje a enviar por la UART2
+#define SENSOR_TEST_DELAY_MS 250	// Delay para mediciones del test
 #define TIMEOUT_100MS 100
 /* USER CODE END PM */
 
@@ -127,37 +127,42 @@ int main(void)
 #if SENSOR_TEST_EN
   /* Test del sensor:
    * 	- Leer ID del sensor y printear su ID
-   * 	- Tomar mediciones cada 1 segundo y enviarlas por la UART2 como texto
+   * 	- Tomar mediciones cada cierto tiempo definido por SENSOR_TEST_DELAY_MS y enviarlas por la UART2 como texto
    */
-  char msg[MSG_SIZE];
-  float luminosidad;
-  int luminosidad_int;
+  char msg[MSG_SIZE];	// mensaje a mandar por UART
+  float luminosidad;	// la variable que extrae la medición de luminosidad
+  int luminosidad_int;	// luminosidad como entero para poder usar sprintf sin reconfigurar el proyecto
 
+  /* Inicializar struct del sensor
+   * 	De esto interesa conseguir al miembro PART_ID del struct para identificar el sensor
+   */
   GB_APDS9306_initialize(&APDS9306_Module);
   GB_APDS9306_Configuration(&APDS9306_Module);
+
   // Mensaje de bienvenida
-//  HAL_UART_Transmit_IT(&huart2, (uint8_t*) SENSOR_TEST_WELCOME_MSG, strlen(SENSOR_TEST_WELCOME_MSG));
   HAL_UART_Transmit(&huart2, (uint8_t*) SENSOR_TEST_WELCOME_MSG, strlen(SENSOR_TEST_WELCOME_MSG),TIMEOUT_100MS);
 
-  // Obtener ID y mandarla
-  sprintf(msg, "ID f: %02X\n",APDS9306_Module.PART_ID);
-//  sprintf(msg, "ID: %02X\n\r",0xCA);	// Mensaje de prueba. Transmit con timeout evita que se pierdan mensajes sucesivos
-
+  // Obtener ID del sensor y mandarla por UART
+  sprintf(msg, "ID: %02X\n\r",APDS9306_Module.PART_ID);
   HAL_UART_Transmit(&huart2, (uint8_t*) msg, strlen(msg), TIMEOUT_100MS);
-  // Loop infinito: Tomar mediciones cada 1 segundo permanentemente
+
+  /* Loop infinito: Tomar mediciones cada 1 segundo permanentemente
+   * 	Cada medición tomada se registra en el miembro LUMINOSITY del struct APDS9306_Module
+   * 	Ojo! Mide en float, por lo que puede que sprintf tire error si no se reconfigura el proyecto
+   */
+
   while(1){
 	  // Obtener medición
-//	  GB_APDS9306_Get_Data(&APDS9306_Module);
+	  GB_APDS9306_Get_Data(&APDS9306_Module);
 
-	  // Truco para mostrarlo como INT para evitar reconfigurar MCU
-	  luminosidad = APDS9306_Module.LUMINOSITY;
-//	  luminosidad = 4.21;
+	  // Truco sucio para mostrarlo como INT para evitar reconfigurar MCU porque sprintf tiene mañas con los float
+	  luminosidad = APDS9306_Module.LUMINOSITY;	// rescatar luminosidad del struct
       luminosidad_int = luminosidad*10;
 
       // Generar mensaje y enviarlo por UART2
-      sprintf(msg, "Medición: %d\n\r",luminosidad_int);
+      sprintf(msg, ">>Medición: %d\n\r",luminosidad_int);	// Va desde 0 (oscuro) a 873810 (luz solar directa)
       HAL_UART_Transmit_IT(&huart2, (uint8_t*) msg, strlen(msg));
-      HAL_Delay(DELAY_1S);
+      HAL_Delay(SENSOR_TEST_DELAY_MS);
 
   }
 #endif
@@ -189,7 +194,7 @@ int main(void)
 	  	  case QUERY_CONEXION:
 	  		  if(Q_OK){
 	  			  setModeToStation();
-	  			  HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), 100);
+	  			  HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
 	  			  estado=WAIT_OK_ESP;
 	  			  Q_OK=0;
 	  		  }
@@ -200,7 +205,7 @@ int main(void)
 	  		  break;
 	  	  case WAIT_OK_ESP:
   			  if(ESP_READY==1){
-  				HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), 100);
+  				HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
   				estado=ESTABLECER_CONEXION_WI_FI;
   				ESP_READY=0;
   			  }
@@ -249,6 +254,7 @@ int main(void)
 	  			  leds=BUSY;
 	  			  chg_led_state(leds);
 	  			  //lee sensor
+	  			  GB_APDS9306_Get_Data(&APDS9306_Module);
 	  			  esp_envio=WAIT;
 	  			  BTN=0;
 	  			  estado=ENVIAR_DATOS;

@@ -9182,7 +9182,7 @@ fuente de poder</text>
 <text x="-146.05" y="121.92" size="1.778" layer="97">Lo errores arrojados por ERC, están aprobados, ya que surgen de los pines de poder de la MCU que no están conectados y no son usados en el diseño.</text>
 <text x="35.56" y="-67.31" size="2.54" layer="94">Wi-Fi SHIELD</text>
 <text x="114.3" y="-78.74" size="2.54" layer="94">3</text>
-<text x="33.02" y="-85.09" size="2.54" layer="94">18-10-2023</text>
+<text x="33.02" y="-85.09" size="2.54" layer="94">3-11-2023</text>
 <text x="38.1" y="-62.23" size="10.16" layer="94">GRUPO 8</text>
 <text x="-16.51" y="49.53" size="1.778" layer="97">RXD</text>
 <text x="-2.032" y="55.372" size="1.778" layer="97">Prog</text>
@@ -9894,7 +9894,7 @@ que se cortarán para ser usados como:
 <sheet>
 <plain>
 <text x="78.232" y="258.826" size="2.54" layer="94">Wi-Fi SHIELD</text>
-<text x="128.016" y="261.112" size="1.778" layer="94">2-11-2023</text>
+<text x="128.016" y="261.112" size="1.778" layer="94">3-11-2023</text>
 <text x="166.878" y="262.128" size="3.81" layer="94" rot="R180">Historial de revisiones
 
 Rev1: Revisión inicial
