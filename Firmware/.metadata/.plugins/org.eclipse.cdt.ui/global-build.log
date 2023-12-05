@@ -1,92 +1,9 @@
-15:24:57 **** Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
+11:00:47 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
 make -j4 all 
-arm-none-eabi-gcc "../Core/Src/interrupts.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L452xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/interrupts.d" -MT"Core/Src/interrupts.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/interrupts.o"
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L452xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/interrupts.c: In function 'HAL_UART_RxCpltCallback':
-../Core/Src/interrupts.c:47:21: warning: pointer targets in passing argument 1 of 'strstr' differ in signedness [-Wpointer-sign]
-   47 |          if (strstr(rx_buffer,"WIFI DISCONNECT")!=NULL){
-      |                     ^~~~~~~~~
-      |                     |
-      |                     uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/interrupts.c:13:
-D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:48:18: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-   48 | char    *strstr (const char *, const char *);
-      |                  ^~~~~~~~~~~~
-../Core/Src/interrupts.c:56:36: warning: pointer targets in passing argument 1 of 'strstr' differ in signedness [-Wpointer-sign]
-   56 |                         if (strstr(rx_buffer,"ready")!=NULL){
-      |                                    ^~~~~~~~~
-      |                                    |
-      |                                    uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/interrupts.c:13:
-D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:48:18: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-   48 | char    *strstr (const char *, const char *);
-      |                  ^~~~~~~~~~~~
-../Core/Src/interrupts.c:62:36: warning: pointer targets in passing argument 1 of 'strstr' differ in signedness [-Wpointer-sign]
-   62 |                         if (strstr(rx_buffer,"OK")!=NULL){
-      |                                    ^~~~~~~~~
-      |                                    |
-      |                                    uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/interrupts.c:13:
-D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:48:18: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-   48 | char    *strstr (const char *, const char *);
-      |                  ^~~~~~~~~~~~
-../Core/Src/interrupts.c:72:36: warning: pointer targets in passing argument 1 of 'strstr' differ in signedness [-Wpointer-sign]
-   72 |                         if (strstr(rx_buffer,"OK")!=NULL){
-      |                                    ^~~~~~~~~
-      |                                    |
-      |                                    uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/interrupts.c:13:
-D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:48:18: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-   48 | char    *strstr (const char *, const char *);
-      |                  ^~~~~~~~~~~~
-../Core/Src/interrupts.c:83:36: warning: pointer targets in passing argument 1 of 'strstr' differ in signedness [-Wpointer-sign]
-   83 |                         if (strstr(rx_buffer,"OK")!=NULL){
-      |                                    ^~~~~~~~~
-      |                                    |
-      |                                    uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/interrupts.c:13:
-D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:48:18: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-   48 | char    *strstr (const char *, const char *);
-      |                  ^~~~~~~~~~~~
-../Core/Src/interrupts.c:95:36: warning: pointer targets in passing argument 1 of 'strstr' differ in signedness [-Wpointer-sign]
-   95 |                         if (strstr(rx_buffer,"OK")!=NULL){
-      |                                    ^~~~~~~~~
-      |                                    |
-      |                                    uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/interrupts.c:13:
-D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:48:18: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-   48 | char    *strstr (const char *, const char *);
-      |                  ^~~~~~~~~~~~
-../Core/Src/interrupts.c:101:41: warning: pointer targets in passing argument 1 of 'strstr' differ in signedness [-Wpointer-sign]
-  101 |                         else if (strstr(rx_buffer,"ERROR")!=NULL){
-      |                                         ^~~~~~~~~
-      |                                         |
-      |                                         uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/interrupts.c:13:
-D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:48:18: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-   48 | char    *strstr (const char *, const char *);
-      |                  ^~~~~~~~~~~~
-../Core/Src/interrupts.c:124:36: warning: pointer targets in passing argument 1 of 'strstr' differ in signedness [-Wpointer-sign]
-  124 |                         if (strstr(rx_buffer,"OK")!=NULL){
-      |                                    ^~~~~~~~~
-      |                                    |
-      |                                    uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/interrupts.c:13:
-D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:48:18: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-   48 | char    *strstr (const char *, const char *);
-      |                  ^~~~~~~~~~~~
-../Core/Src/interrupts.c:130:41: warning: pointer targets in passing argument 1 of 'strstr' differ in signedness [-Wpointer-sign]
-  130 |                         else if (strstr(rx_buffer,"ERROR")!=NULL){
-      |                                         ^~~~~~~~~
-      |                                         |
-      |                                         uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/interrupts.c:13:
-D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:48:18: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-   48 | char    *strstr (const char *, const char *);
-      |                  ^~~~~~~~~~~~
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:98:21: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
-   98 |         memset(text,"\0",10);
+../Core/Src/main.c:111:21: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
+  111 |         memset(text,"\0",10);
       |                     ^~~~
       |                     |
       |                     char *
@@ -95,20 +12,8 @@ In file included from ../Core/Inc/at_command.h:13,
 D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:33:26: note: expected 'int' but argument is of type 'char *'
    33 | void *   memset (void *, int, size_t);
       |                          ^~~
-../Core/Src/main.c:181:65: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
-  181 |                                   HAL_UART_Transmit_IT(&huart1, "AT+CWQAP\r\n", 10);
-      |                                                                 ^~~~~~~~~~~~~~
-      |                                                                 |
-      |                                                                 char *
-In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
-                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
- 1699 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
-      |                                                                   ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:192:62: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
-  192 |                                   HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+../Core/Src/main.c:210:62: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  210 |                                   HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
       |                                                              ^~~~~~~~~
       |                                                              |
       |                                                              uint8_t {aka unsigned char}
@@ -119,8 +24,20 @@ In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
  1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
       |                                                                ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:203:60: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
-  203 |                                 HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+../Core/Src/main.c:223:62: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  223 |                                   HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+      |                                                              ^~~~~~~~~
+      |                                                              |
+      |                                                              uint8_t {aka unsigned char}
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:234:60: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  234 |                                 HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
       |                                                            ^~~~~~~~~
       |                                                            |
       |                                                            uint8_t {aka unsigned char}
@@ -131,64 +48,50 @@ In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
  1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
       |                                                                ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:267:39: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
-  267 |                           memset(text,"\0",10);
-      |                                       ^~~~
-      |                                       |
-      |                                       char *
-In file included from ../Core/Inc/at_command.h:13,
-                 from ../Core/Src/main.c:29:
-D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:33:26: note: expected 'int' but argument is of type 'char *'
-   33 | void *   memset (void *, int, size_t);
-      |                          ^~~
-../Core/Src/main.c:268:35: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  268 |                           sprintf(text,"%d",time);
-      |                                   ^~~~
-      |                                   |
-      |                                   uint8_t * {aka unsigned char *}
+../Core/Src/main.c:310:31: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  310 |                       sprintf(text,"%d",luminosidad_int);
+      |                               ^~~~
+      |                               |
+      |                               uint8_t * {aka unsigned char *}
 In file included from ../Core/Inc/main.h:34,
                  from ../Core/Src/main.c:20:
 D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/stdio.h:254:18: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   254 | int     sprintf (char *__restrict, const char *__restrict, ...)
       |                  ^
-../Core/Src/main.c:268:42: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-  268 |                           sprintf(text,"%d",time);
-      |                                         ~^  ~~~~
-      |                                          |  |
-      |                                          |  uint32_t {aka long unsigned int}
-      |                                          int
-      |                                         %ld
+../Core/Src/main.c:109:18: warning: unused variable 'time' [-Wunused-variable]
+  109 |         uint32_t time;
+      |                  ^~~~
 arm-none-eabi-gcc -o "FW Wi-Fi Shield Rev1.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Docs\EAGLE\projects\git\ELO301-G8\Firmware\FW Wi-Fi Shield Rev1\STM32L452RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FW Wi-Fi Shield Rev1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: FW Wi-Fi Shield Rev1.elf
  
 arm-none-eabi-size   FW\ Wi-Fi\ Shield\ Rev1.elf 
 arm-none-eabi-objdump -h -S  FW\ Wi-Fi\ Shield\ Rev1.elf  > "FW Wi-Fi Shield Rev1.list"
    text	   data	    bss	    dec	    hex	filename
-  27360	    104	   2936	  30400	   76c0	FW Wi-Fi Shield Rev1.elf
+  28464	    104	   2944	  31512	   7b18	FW Wi-Fi Shield Rev1.elf
 Finished building: default.size.stdout
  
 Finished building: FW Wi-Fi Shield Rev1.list
  
-15:30:40 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
+11:00:52 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
 make -j4 all 
 arm-none-eabi-size   FW\ Wi-Fi\ Shield\ Rev1.elf 
    text	   data	    bss	    dec	    hex	filename
-  27360	    104	   2936	  30400	   76c0	FW Wi-Fi Shield Rev1.elf
+  28464	    104	   2944	  31512	   7b18	FW Wi-Fi Shield Rev1.elf
 Finished building: default.size.stdout
  
-15:32:12 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
+11:01:15 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
 make -j4 all 
 arm-none-eabi-size   FW\ Wi-Fi\ Shield\ Rev1.elf 
    text	   data	    bss	    dec	    hex	filename
-  27360	    104	   2936	  30400	   76c0	FW Wi-Fi Shield Rev1.elf
+  28464	    104	   2944	  31512	   7b18	FW Wi-Fi Shield Rev1.elf
 Finished building: default.size.stdout
  
-16:10:17 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
+11:02:27 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
 make -j4 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L452xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:98:21: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
-   98 |         memset(text,"\0",10);
+../Core/Src/main.c:111:21: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
+  111 |         memset(text,"\0",10);
       |                     ^~~~
       |                     |
       |                     char *
@@ -197,20 +100,8 @@ In file included from ../Core/Inc/at_command.h:13,
 D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:33:26: note: expected 'int' but argument is of type 'char *'
    33 | void *   memset (void *, int, size_t);
       |                          ^~~
-../Core/Src/main.c:181:65: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
-  181 |                                   HAL_UART_Transmit_IT(&huart1, "AT+CWQAP\r\n", 10);
-      |                                                                 ^~~~~~~~~~~~~~
-      |                                                                 |
-      |                                                                 char *
-In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
-                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
- 1699 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
-      |                                                                   ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:192:62: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
-  192 |                                   HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+../Core/Src/main.c:210:62: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  210 |                                   HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
       |                                                              ^~~~~~~~~
       |                                                              |
       |                                                              uint8_t {aka unsigned char}
@@ -221,8 +112,20 @@ In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
  1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
       |                                                                ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:203:60: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
-  203 |                                 HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+../Core/Src/main.c:223:62: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  223 |                                   HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+      |                                                              ^~~~~~~~~
+      |                                                              |
+      |                                                              uint8_t {aka unsigned char}
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:234:60: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  234 |                                 HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
       |                                                            ^~~~~~~~~
       |                                                            |
       |                                                            uint8_t {aka unsigned char}
@@ -233,50 +136,36 @@ In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
  1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
       |                                                                ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:267:39: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
-  267 |                           memset(text,"\0",10);
-      |                                       ^~~~
-      |                                       |
-      |                                       char *
-In file included from ../Core/Inc/at_command.h:13,
-                 from ../Core/Src/main.c:29:
-D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:33:26: note: expected 'int' but argument is of type 'char *'
-   33 | void *   memset (void *, int, size_t);
-      |                          ^~~
-../Core/Src/main.c:268:35: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  268 |                           sprintf(text,"%d",time);
-      |                                   ^~~~
-      |                                   |
-      |                                   uint8_t * {aka unsigned char *}
+../Core/Src/main.c:310:31: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  310 |                       sprintf(text,"%d",luminosidad_int);
+      |                               ^~~~
+      |                               |
+      |                               uint8_t * {aka unsigned char *}
 In file included from ../Core/Inc/main.h:34,
                  from ../Core/Src/main.c:20:
 D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/stdio.h:254:18: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   254 | int     sprintf (char *__restrict, const char *__restrict, ...)
       |                  ^
-../Core/Src/main.c:268:42: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-  268 |                           sprintf(text,"%d",time);
-      |                                         ~^  ~~~~
-      |                                          |  |
-      |                                          |  uint32_t {aka long unsigned int}
-      |                                          int
-      |                                         %ld
+../Core/Src/main.c:109:18: warning: unused variable 'time' [-Wunused-variable]
+  109 |         uint32_t time;
+      |                  ^~~~
 arm-none-eabi-gcc -o "FW Wi-Fi Shield Rev1.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Docs\EAGLE\projects\git\ELO301-G8\Firmware\FW Wi-Fi Shield Rev1\STM32L452RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FW Wi-Fi Shield Rev1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: FW Wi-Fi Shield Rev1.elf
  
 arm-none-eabi-size   FW\ Wi-Fi\ Shield\ Rev1.elf 
 arm-none-eabi-objdump -h -S  FW\ Wi-Fi\ Shield\ Rev1.elf  > "FW Wi-Fi Shield Rev1.list"
    text	   data	    bss	    dec	    hex	filename
-  27364	    104	   2936	  30404	   76c4	FW Wi-Fi Shield Rev1.elf
+  26756	    104	   2944	  29804	   746c	FW Wi-Fi Shield Rev1.elf
 Finished building: default.size.stdout
  
 Finished building: FW Wi-Fi Shield Rev1.list
  
-16:12:36 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
+11:03:27 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
 make -j4 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L452xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:98:21: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
-   98 |         memset(text,"\0",10);
+../Core/Src/main.c:111:21: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
+  111 |         memset(text,"\0",10);
       |                     ^~~~
       |                     |
       |                     char *
@@ -285,20 +174,8 @@ In file included from ../Core/Inc/at_command.h:13,
 D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:33:26: note: expected 'int' but argument is of type 'char *'
    33 | void *   memset (void *, int, size_t);
       |                          ^~~
-../Core/Src/main.c:181:65: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
-  181 |                                   HAL_UART_Transmit_IT(&huart1, "AT+CWQAP\r\n", 10);
-      |                                                                 ^~~~~~~~~~~~~~
-      |                                                                 |
-      |                                                                 char *
-In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
-                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
- 1699 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
-      |                                                                   ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:192:62: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
-  192 |                                   HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+../Core/Src/main.c:223:62: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  223 |                                   HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
       |                                                              ^~~~~~~~~
       |                                                              |
       |                                                              uint8_t {aka unsigned char}
@@ -309,8 +186,8 @@ In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
  1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
       |                                                                ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:203:60: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
-  203 |                                 HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+../Core/Src/main.c:234:60: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  234 |                                 HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
       |                                                            ^~~~~~~~~
       |                                                            |
       |                                                            uint8_t {aka unsigned char}
@@ -321,50 +198,36 @@ In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
  1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
       |                                                                ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:267:39: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
-  267 |                           memset(text,"\0",10);
-      |                                       ^~~~
-      |                                       |
-      |                                       char *
-In file included from ../Core/Inc/at_command.h:13,
-                 from ../Core/Src/main.c:29:
-D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:33:26: note: expected 'int' but argument is of type 'char *'
-   33 | void *   memset (void *, int, size_t);
-      |                          ^~~
-../Core/Src/main.c:268:35: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  268 |                           sprintf(text,"%d",time);
-      |                                   ^~~~
-      |                                   |
-      |                                   uint8_t * {aka unsigned char *}
+../Core/Src/main.c:310:31: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  310 |                       sprintf(text,"%d",luminosidad_int);
+      |                               ^~~~
+      |                               |
+      |                               uint8_t * {aka unsigned char *}
 In file included from ../Core/Inc/main.h:34,
                  from ../Core/Src/main.c:20:
 D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/stdio.h:254:18: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   254 | int     sprintf (char *__restrict, const char *__restrict, ...)
       |                  ^
-../Core/Src/main.c:268:42: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-  268 |                           sprintf(text,"%d",time);
-      |                                         ~^  ~~~~
-      |                                          |  |
-      |                                          |  uint32_t {aka long unsigned int}
-      |                                          int
-      |                                         %ld
+../Core/Src/main.c:109:18: warning: unused variable 'time' [-Wunused-variable]
+  109 |         uint32_t time;
+      |                  ^~~~
 arm-none-eabi-gcc -o "FW Wi-Fi Shield Rev1.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Docs\EAGLE\projects\git\ELO301-G8\Firmware\FW Wi-Fi Shield Rev1\STM32L452RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FW Wi-Fi Shield Rev1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: FW Wi-Fi Shield Rev1.elf
  
 arm-none-eabi-size   FW\ Wi-Fi\ Shield\ Rev1.elf 
 arm-none-eabi-objdump -h -S  FW\ Wi-Fi\ Shield\ Rev1.elf  > "FW Wi-Fi Shield Rev1.list"
    text	   data	    bss	    dec	    hex	filename
-  27360	    104	   2936	  30400	   76c0	FW Wi-Fi Shield Rev1.elf
+  26740	    104	   2944	  29788	   745c	FW Wi-Fi Shield Rev1.elf
 Finished building: default.size.stdout
  
 Finished building: FW Wi-Fi Shield Rev1.list
  
-16:12:46 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
+11:05:41 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
 make -j4 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L452xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:98:21: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
-   98 |         memset(text,"\0",10);
+../Core/Src/main.c:111:21: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
+  111 |         memset(text,"\0",10);
       |                     ^~~~
       |                     |
       |                     char *
@@ -373,20 +236,8 @@ In file included from ../Core/Inc/at_command.h:13,
 D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:33:26: note: expected 'int' but argument is of type 'char *'
    33 | void *   memset (void *, int, size_t);
       |                          ^~~
-../Core/Src/main.c:181:65: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
-  181 |                                   HAL_UART_Transmit_IT(&huart1, "AT+CWQAP\r\n", 10);
-      |                                                                 ^~~~~~~~~~~~~~
-      |                                                                 |
-      |                                                                 char *
-In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
-                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
- 1699 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
-      |                                                                   ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:192:62: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
-  192 |                                   HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+../Core/Src/main.c:223:62: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  223 |                                   HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
       |                                                              ^~~~~~~~~
       |                                                              |
       |                                                              uint8_t {aka unsigned char}
@@ -397,8 +248,8 @@ In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
  1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
       |                                                                ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:203:60: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
-  203 |                                 HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+../Core/Src/main.c:234:60: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  234 |                                 HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
       |                                                            ^~~~~~~~~
       |                                                            |
       |                                                            uint8_t {aka unsigned char}
@@ -409,50 +260,36 @@ In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
  1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
       |                                                                ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:267:39: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
-  267 |                           memset(text,"\0",10);
-      |                                       ^~~~
-      |                                       |
-      |                                       char *
-In file included from ../Core/Inc/at_command.h:13,
-                 from ../Core/Src/main.c:29:
-D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:33:26: note: expected 'int' but argument is of type 'char *'
-   33 | void *   memset (void *, int, size_t);
-      |                          ^~~
-../Core/Src/main.c:268:35: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  268 |                           sprintf(text,"%d",time);
-      |                                   ^~~~
-      |                                   |
-      |                                   uint8_t * {aka unsigned char *}
+../Core/Src/main.c:310:31: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  310 |                       sprintf(text,"%d",luminosidad_int);
+      |                               ^~~~
+      |                               |
+      |                               uint8_t * {aka unsigned char *}
 In file included from ../Core/Inc/main.h:34,
                  from ../Core/Src/main.c:20:
 D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/stdio.h:254:18: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   254 | int     sprintf (char *__restrict, const char *__restrict, ...)
       |                  ^
-../Core/Src/main.c:268:42: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-  268 |                           sprintf(text,"%d",time);
-      |                                         ~^  ~~~~
-      |                                          |  |
-      |                                          |  uint32_t {aka long unsigned int}
-      |                                          int
-      |                                         %ld
+../Core/Src/main.c:109:18: warning: unused variable 'time' [-Wunused-variable]
+  109 |         uint32_t time;
+      |                  ^~~~
 arm-none-eabi-gcc -o "FW Wi-Fi Shield Rev1.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Docs\EAGLE\projects\git\ELO301-G8\Firmware\FW Wi-Fi Shield Rev1\STM32L452RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FW Wi-Fi Shield Rev1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: FW Wi-Fi Shield Rev1.elf
  
 arm-none-eabi-size   FW\ Wi-Fi\ Shield\ Rev1.elf 
 arm-none-eabi-objdump -h -S  FW\ Wi-Fi\ Shield\ Rev1.elf  > "FW Wi-Fi Shield Rev1.list"
    text	   data	    bss	    dec	    hex	filename
-  27360	    104	   2936	  30400	   76c0	FW Wi-Fi Shield Rev1.elf
+  26676	    104	   2944	  29724	   741c	FW Wi-Fi Shield Rev1.elf
 Finished building: default.size.stdout
  
 Finished building: FW Wi-Fi Shield Rev1.list
  
-16:13:18 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
+11:08:00 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
 make -j4 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L452xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:98:21: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
-   98 |         memset(text,"\0",10);
+../Core/Src/main.c:111:21: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
+  111 |         memset(text,"\0",10);
       |                     ^~~~
       |                     |
       |                     char *
@@ -461,20 +298,8 @@ In file included from ../Core/Inc/at_command.h:13,
 D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:33:26: note: expected 'int' but argument is of type 'char *'
    33 | void *   memset (void *, int, size_t);
       |                          ^~~
-../Core/Src/main.c:181:65: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
-  181 |                                   HAL_UART_Transmit_IT(&huart1, "AT+CWQAP\r\n", 10);
-      |                                                                 ^~~~~~~~~~~~~~
-      |                                                                 |
-      |                                                                 char *
-In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
-                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
- 1699 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
-      |                                                                   ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:192:62: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
-  192 |                                   HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+../Core/Src/main.c:223:62: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  223 |                                   HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
       |                                                              ^~~~~~~~~
       |                                                              |
       |                                                              uint8_t {aka unsigned char}
@@ -485,8 +310,8 @@ In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
  1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
       |                                                                ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:203:60: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
-  203 |                                 HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+../Core/Src/main.c:234:60: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  234 |                                 HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
       |                                                            ^~~~~~~~~
       |                                                            |
       |                                                            uint8_t {aka unsigned char}
@@ -497,40 +322,183 @@ In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
  1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
       |                                                                ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:267:39: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
-  267 |                           memset(text,"\0",10);
-      |                                       ^~~~
-      |                                       |
-      |                                       char *
-In file included from ../Core/Inc/at_command.h:13,
-                 from ../Core/Src/main.c:29:
-D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:33:26: note: expected 'int' but argument is of type 'char *'
-   33 | void *   memset (void *, int, size_t);
-      |                          ^~~
-../Core/Src/main.c:268:35: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  268 |                           sprintf(text,"%d",time);
-      |                                   ^~~~
-      |                                   |
-      |                                   uint8_t * {aka unsigned char *}
+../Core/Src/main.c:310:31: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  310 |                       sprintf(text,"%d",luminosidad_int);
+      |                               ^~~~
+      |                               |
+      |                               uint8_t * {aka unsigned char *}
 In file included from ../Core/Inc/main.h:34,
                  from ../Core/Src/main.c:20:
 D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/stdio.h:254:18: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   254 | int     sprintf (char *__restrict, const char *__restrict, ...)
       |                  ^
-../Core/Src/main.c:268:42: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-  268 |                           sprintf(text,"%d",time);
-      |                                         ~^  ~~~~
-      |                                          |  |
-      |                                          |  uint32_t {aka long unsigned int}
-      |                                          int
-      |                                         %ld
+../Core/Src/main.c:109:18: warning: unused variable 'time' [-Wunused-variable]
+  109 |         uint32_t time;
+      |                  ^~~~
 arm-none-eabi-gcc -o "FW Wi-Fi Shield Rev1.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Docs\EAGLE\projects\git\ELO301-G8\Firmware\FW Wi-Fi Shield Rev1\STM32L452RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FW Wi-Fi Shield Rev1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: FW Wi-Fi Shield Rev1.elf
  
 arm-none-eabi-size   FW\ Wi-Fi\ Shield\ Rev1.elf 
 arm-none-eabi-objdump -h -S  FW\ Wi-Fi\ Shield\ Rev1.elf  > "FW Wi-Fi Shield Rev1.list"
    text	   data	    bss	    dec	    hex	filename
-  27364	    104	   2936	  30404	   76c4	FW Wi-Fi Shield Rev1.elf
+  26740	    104	   2944	  29788	   745c	FW Wi-Fi Shield Rev1.elf
+Finished building: default.size.stdout
+ 
+Finished building: FW Wi-Fi Shield Rev1.list
+ 
+11:08:23 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
+make -j4 all 
+arm-none-eabi-size   FW\ Wi-Fi\ Shield\ Rev1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26740	    104	   2944	  29788	   745c	FW Wi-Fi Shield Rev1.elf
+Finished building: default.size.stdout
+ 
+11:10:02 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L452xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:111:21: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
+  111 |         memset(text,"\0",10);
+      |                     ^~~~
+      |                     |
+      |                     char *
+In file included from ../Core/Inc/at_command.h:13,
+                 from ../Core/Src/main.c:29:
+D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:33:26: note: expected 'int' but argument is of type 'char *'
+   33 | void *   memset (void *, int, size_t);
+      |                          ^~~
+../Core/Src/main.c:223:62: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  223 |                                   HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+      |                                                              ^~~~~~~~~
+      |                                                              |
+      |                                                              uint8_t {aka unsigned char}
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:234:60: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  234 |                                 HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+      |                                                            ^~~~~~~~~
+      |                                                            |
+      |                                                            uint8_t {aka unsigned char}
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:310:31: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  310 |                       sprintf(text,"%d",luminosidad_int);
+      |                               ^~~~
+      |                               |
+      |                               uint8_t * {aka unsigned char *}
+In file included from ../Core/Inc/main.h:34,
+                 from ../Core/Src/main.c:20:
+D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/stdio.h:254:18: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  254 | int     sprintf (char *__restrict, const char *__restrict, ...)
+      |                  ^
+../Core/Src/main.c:109:18: warning: unused variable 'time' [-Wunused-variable]
+  109 |         uint32_t time;
+      |                  ^~~~
+arm-none-eabi-gcc -o "FW Wi-Fi Shield Rev1.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Docs\EAGLE\projects\git\ELO301-G8\Firmware\FW Wi-Fi Shield Rev1\STM32L452RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FW Wi-Fi Shield Rev1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FW Wi-Fi Shield Rev1.elf
+ 
+arm-none-eabi-size   FW\ Wi-Fi\ Shield\ Rev1.elf 
+arm-none-eabi-objdump -h -S  FW\ Wi-Fi\ Shield\ Rev1.elf  > "FW Wi-Fi Shield Rev1.list"
+   text	   data	    bss	    dec	    hex	filename
+  26740	    104	   2944	  29788	   745c	FW Wi-Fi Shield Rev1.elf
+Finished building: default.size.stdout
+ 
+Finished building: FW Wi-Fi Shield Rev1.list
+ 
+11:12:10 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L452xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:107:21: warning: passing argument 2 of 'memset' makes integer from pointer without a cast [-Wint-conversion]
+  107 |         memset(text,"\0",10);
+      |                     ^~~~
+      |                     |
+      |                     char *
+In file included from ../Core/Inc/at_command.h:13,
+                 from ../Core/Src/main.c:29:
+D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/string.h:33:26: note: expected 'int' but argument is of type 'char *'
+   33 | void *   memset (void *, int, size_t);
+      |                          ^~~
+../Core/Src/main.c:206:62: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  206 |                                   HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+      |                                                              ^~~~~~~~~
+      |                                                              |
+      |                                                              uint8_t {aka unsigned char}
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:219:62: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  219 |                                   HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+      |                                                              ^~~~~~~~~
+      |                                                              |
+      |                                                              uint8_t {aka unsigned char}
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:230:60: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  230 |                                 HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+      |                                                            ^~~~~~~~~
+      |                                                            |
+      |                                                            uint8_t {aka unsigned char}
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:306:31: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  306 |                       sprintf(text,"%d",luminosidad_int);
+      |                               ^~~~
+      |                               |
+      |                               uint8_t * {aka unsigned char *}
+In file included from ../Core/Inc/main.h:34,
+                 from ../Core/Src/main.c:20:
+D:\ST\STM32CubeIDE_1.13.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/stdio.h:254:18: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  254 | int     sprintf (char *__restrict, const char *__restrict, ...)
+      |                  ^
+../Core/Src/main.c:105:18: warning: unused variable 'time' [-Wunused-variable]
+  105 |         uint32_t time;
+      |                  ^~~~
+arm-none-eabi-gcc -o "FW Wi-Fi Shield Rev1.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Docs\EAGLE\projects\git\ELO301-G8\Firmware\FW Wi-Fi Shield Rev1\STM32L452RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FW Wi-Fi Shield Rev1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FW Wi-Fi Shield Rev1.elf
+ 
+arm-none-eabi-size   FW\ Wi-Fi\ Shield\ Rev1.elf 
+arm-none-eabi-objdump -h -S  FW\ Wi-Fi\ Shield\ Rev1.elf  > "FW Wi-Fi Shield Rev1.list"
+   text	   data	    bss	    dec	    hex	filename
+  28464	    104	   2944	  31512	   7b18	FW Wi-Fi Shield Rev1.elf
+Finished building: default.size.stdout
+ 
+Finished building: FW Wi-Fi Shield Rev1.list
+ 
+11:24:14 **** Incremental Build of configuration Debug for project FW Wi-Fi Shield Rev1 ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/funciones.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L452xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/funciones.d" -MT"Core/Src/funciones.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/funciones.o"
+arm-none-eabi-gcc -o "FW Wi-Fi Shield Rev1.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Docs\EAGLE\projects\git\ELO301-G8\Firmware\FW Wi-Fi Shield Rev1\STM32L452RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FW Wi-Fi Shield Rev1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FW Wi-Fi Shield Rev1.elf
+ 
+arm-none-eabi-size   FW\ Wi-Fi\ Shield\ Rev1.elf 
+arm-none-eabi-objdump -h -S  FW\ Wi-Fi\ Shield\ Rev1.elf  > "FW Wi-Fi Shield Rev1.list"
+   text	   data	    bss	    dec	    hex	filename
+  28464	    104	   2944	  31512	   7b18	FW Wi-Fi Shield Rev1.elf
 Finished building: default.size.stdout
  
 Finished building: FW Wi-Fi Shield Rev1.list

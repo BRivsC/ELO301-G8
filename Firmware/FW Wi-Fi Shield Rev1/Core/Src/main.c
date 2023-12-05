@@ -42,11 +42,17 @@ GebraBit_APDS9306 APDS9306_Module;	// struct con los datos del sensor
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define SENSOR_TEST_EN 1 			// Macro para el test del sensor. 1 para testearlo, 0 para el funcionamiento normal
+// Mensaje de bienvenida
+#define WELCOME_MSG	"ELO301 Wi-Fi Shield\n\rRevisión actual: Rev1\n\r"
+
+#define SENSOR_TEST_EN 0			// Macro para el test del sensor. 1 para testearlo, 0 para el funcionamiento normal
 #define SENSOR_TEST_WELCOME_MSG "Modo de prueba del sensor.\n\rPara salir, definir SENSOR_TEST_EN de main.c en 0 y recompilar\n\r"
 #define MSG_SIZE 30					// Tamaño del mensaje a enviar por la UART2
 #define SENSOR_TEST_DELAY_MS 250	// Delay para mediciones del test
 #define TIMEOUT_100MS 100
+
+#define SEND_CLK 0					// 1 para mandar valor del clock en lugar de la medición del sensor
+#define CON_TEST 0					// 1 para probar conexión
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -66,6 +72,8 @@ int NI=1;
 enum LEDS leds=OFF;					//estado de los leds de estado.
 int Q_OK=0;
 extern uint8_t rx_buffer;
+float luminosidad;					// luminosidad medida
+int luminosidad_int;				// luminosidad en entero
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -87,6 +95,7 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	//enum ESTADO estado=WAIT_ESP;		//Variable que identifica el estado del sistema (FSM).
 	int intentos=0;						//Contador de intentos de conexión.
+
 	uint32_t timeout=0;
 	uint32_t DELAY = 2000;
 							//1 para ESP lista para trabajar, 0 eoc.
@@ -124,20 +133,24 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
+  char medicion_uart[MSG_SIZE];	// mensaje a mandar por UART
+  GB_APDS9306_initialize(&APDS9306_Module);
+  GB_APDS9306_Configuration(&APDS9306_Module);
+
 #if SENSOR_TEST_EN
   /* Test del sensor:
    * 	- Leer ID del sensor y printear su ID
    * 	- Tomar mediciones cada cierto tiempo definido por SENSOR_TEST_DELAY_MS y enviarlas por la UART2 como texto
    */
-  char msg[MSG_SIZE];	// mensaje a mandar por UART
-  float luminosidad;	// la variable que extrae la medición de luminosidad
-  int luminosidad_int;	// luminosidad como entero para poder usar sprintf sin reconfigurar el proyecto
-
+  //char msg[MSG_SIZE];	// mensaje a mandar por UART
+  //float luminosidad;	// la variable que extrae la medición de luminosidad
+  //int luminosidad_int;	// luminosidad como entero para poder usar sprintf sin reconfigurar el proyecto
   /* Inicializar struct del sensor
    * 	De esto interesa conseguir al miembro PART_ID del struct para identificar el sensor
    */
   GB_APDS9306_initialize(&APDS9306_Module);
   GB_APDS9306_Configuration(&APDS9306_Module);
+
 
   // Mensaje de bienvenida
   HAL_UART_Transmit(&huart2, (uint8_t*) SENSOR_TEST_WELCOME_MSG, strlen(SENSOR_TEST_WELCOME_MSG),TIMEOUT_100MS);
@@ -155,9 +168,10 @@ int main(void)
 	  // Obtener medición
 	  GB_APDS9306_Get_Data(&APDS9306_Module);
 
-	  // Truco sucio para mostrarlo como INT para evitar reconfigurar MCU porque sprintf tiene mañas con los float
+	  // Cast como INT para evitar reconfigurar MCU porque sprintf tiene mañas con los float
 	  luminosidad = APDS9306_Module.LUMINOSITY;	// rescatar luminosidad del struct
-      luminosidad_int = luminosidad*10;
+      luminosidad_int = (int) luminosidad;
+
 
       // Generar mensaje y enviarlo por UART2
       sprintf(msg, ">>Medición: %d\n\r",luminosidad_int);	// Va desde 0 (oscuro) a 873810 (luz solar directa)
@@ -167,7 +181,7 @@ int main(void)
   }
 #endif
 
-
+  HAL_UART_Transmit(&huart2, (uint8_t*) WELCOME_MSG, strlen(WELCOME_MSG),TIMEOUT_100MS);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -183,9 +197,17 @@ int main(void)
 		  		  reconexion=0;
 	  			  intentos=0;
 	  			  esp_connect=FAIL;
+
+#if CON_TEST
 	  			  HAL_UART_Transmit_IT(&huart1, "AT+CWQAP\r\n", 10);
-	  			  ESP_OK=0;
 	  			  estado=QUERY_CONEXION;
+#else
+	  			  setModeToStation();
+	  			  HAL_UART_Transmit(&huart2, rx_buffer, sizeof(rx_buffer), TIMEOUT_100MS);
+	  			  estado=WAIT_OK_ESP;
+	  			  ESP_READY=0;
+#endif
+	  			  ESP_OK=0;
 	  		  }
 	  		  else{
 	  			  estado=WAIT_ESP;
@@ -255,6 +277,7 @@ int main(void)
 	  			  chg_led_state(leds);
 	  			  //lee sensor
 	  			  GB_APDS9306_Get_Data(&APDS9306_Module);
+
 	  			  esp_envio=WAIT;
 	  			  BTN=0;
 	  			  estado=ENVIAR_DATOS;
@@ -268,10 +291,23 @@ int main(void)
 	  		  }
 	  		  break;
 	  	  case ENVIAR_DATOS:
+#if SEND_CLK
+	  		  // Mandar valor actual del CLK
 	  		  time=HAL_GetTick();
 	  		  memset(text,"\0",10);
 	  		  sprintf(text,"%d",time);
 	  		  sendSensorData((uint8_t*)text);
+
+#else
+	  		  // Mandar medición del sensor
+	  		  // Cast como INT para evitar reconfigurar MCU porque sprintf tiene mañas con los float
+	  		  luminosidad = APDS9306_Module.LUMINOSITY;	// rescatar luminosidad del struct
+	  	      luminosidad_int = (int) luminosidad;
+	  	      sprintf(text,"%d",luminosidad_int);
+	  	      sprintf(medicion_uart, ">>Medición: %d\n\r",luminosidad_int);	// Va desde 0 (oscuro) a 873810 (luz solar directa)
+	  	      HAL_UART_Transmit_IT(&huart2, (uint8_t*) medicion_uart, strlen(medicion_uart));
+	  		  sendSensorData((uint8_t*)text);
+#endif
 	  		  estado=WAIT_ENVIAR_DATOS;
 	  		  break;
 	  	  case WAIT_ENVIAR_DATOS:

@@ -32,5 +32,5 @@
 ## ESP32
 - Soldar R5
 - Ver conexión con MCU
-- Correr firmware para que envíe valor del clock a ThingSpeak
-
+- Correr firmware para que envíe valor del clock a ThingSpeak usando el macro ``SEND_CLK`` de ``main.c`` en 1
+- Conectar BOOT a tierra

@@ -6,8 +6,16 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Tomar"/>
+		<item key="selection" value="MSG"/>
 		<list key="findhistory">
+			<item value="msg"/>
+			<item value="rx_buffer"/>
+			<item value="text"/>
+			<item value="enviar_datos"/>
+			<item value="enviar"/>
+			<item value="sen"/>
+			<item value="conectado"/>
+			<item value="LUMINOSITY"/>
 			<item value="tomar"/>
 			<item value="DELAY_1S"/>
 			<item value="sensor"/>
@@ -15,21 +23,18 @@
 			<item value="mems"/>
 			<item value="memset"/>
 			<item value="SENSOR_TEST"/>
-			<item value="hi2c1"/>
-			<item value="responder"/>
-			<item value="estado="/>
-			<item value="setModeToStation"/>
-			<item value="setModetoS"/>
 		</list>
 		<list key="replacehistory">
+			<item value="medicion_uart"/>
+			<item value=""/>
 			<item value="SENSOR_TEST_DELAY_MS"/>
 			<item value="SENSOR_TEST_EN"/>
 			<item value="hi2c3"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="986"/>
-		<item key="DIALOG_Y_ORIGIN" value="86"/>
+		<item key="DIALOG_X_ORIGIN" value="1450"/>
+		<item key="DIALOG_Y_ORIGIN" value="258"/>
 		<item key="DIALOG_WIDTH" value="414"/>
 		<item key="DIALOG_HEIGHT" value="454"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
